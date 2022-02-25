@@ -41,6 +41,7 @@ class Equipe
     /**
      * @ORM\Column(type="string", length=55, nullable=true)
      * @Assert\NotBlank(allowNull = true)
+     * @Assert\Positive
      */
     private $metier;
 
