@@ -1,0 +1,11 @@
+{{ form_start(AjoutClient) }}
+        {{ form_row(AjoutClient.nom) }}
+        {{ form_row(AjoutClient.prenom) }}
+        {{ form_row(AjoutClient.email) }}
+        {{ form_row(AjoutClient.adresse) }}
+        {{ form_row(AjoutClient.num_tel) }}
+        {{ form_row(AjoutClient.password, {
+            label: 'Password'
+        }) }}
+<button type="submit" class="btn">Register</button>
+{{ form_end(AjoutClient) }}
