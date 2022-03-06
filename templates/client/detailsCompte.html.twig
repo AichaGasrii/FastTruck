@@ -1,0 +1,40 @@
+{% extends 'client/index.html.twig' %}
+
+{% block body %}
+
+    <section style="background-color: black; opacity: 0.9; width: 90%; margin-right: 5%; margin-left: 5%; height: 90%; margin-bottom: 5%; margin-top: 3%; color: white;">
+        <h1 style="color: white">Informations du compte</h1>
+
+        <table style="width: 80%; position: center; margin-left: 10%; margin-right: 10%;">
+            <tr>
+                <td>
+                    <label for="nom">Nom</label>
+                </td>
+                <td name="nom" class="form-control"> {{ user.nom}}
+                </td>
+                <td>
+                    <label for="prenom">Prenom</label>
+                </td>
+                <td name="prenom" class="form-group"> {{ user.prenom}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email">Email</label>
+                </td>
+                <td name="email" class="form-control"> {{ user.email}}
+                </td>
+                <td>
+                    <label for="adresse">Adresse</label>
+                </td>
+                <td name="adresse" class="form-group"> {{ user.adresse}}
+                </td>
+            </tr>
+            <tr><td><button href="#" class="btn-block">Modifier</button></td></tr>
+        </table>
+
+        </div>
+
+    </section>
+
+{% endblock body %}

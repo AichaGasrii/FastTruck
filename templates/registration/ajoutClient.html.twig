@@ -1,11 +1,54 @@
-{{ form_start(AjoutClient) }}
-        {{ form_row(AjoutClient.nom) }}
-        {{ form_row(AjoutClient.prenom) }}
-        {{ form_row(AjoutClient.email) }}
-        {{ form_row(AjoutClient.adresse) }}
-        {{ form_row(AjoutClient.num_tel) }}
-        {{ form_row(AjoutClient.password, {
-            label: 'Password'
-        }) }}
-<button type="submit" class="btn">Register</button>
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+{% block client %}
+        <form class="form-inline">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+        </form>
+        <a href="/login" class="order_online">
+                Se connecter
+        </a>
+{% endblock %}
+{% block body %}
+
+<section class="login-dark">
+        {{ form_start(AjoutClient) }}
+        <h1>S'inscrire</h1>
+
+
+        <div class="form-control">
+             {{ form_widget(AjoutClient.nom, {'attr':{'class':'form-control', 'placeholder':'Nom'}}) }}
+             {{ form_errors(AjoutClient.nom) }}
+        </div>
+        <div class="form-control">
+             {{ form_widget(AjoutClient.prenom, {'attr':{'class':'form-control', 'placeholder':'Prenom'}}) }}
+             {{ form_errors(AjoutClient.prenom) }}
+        </div>
+
+        <div class="form-control">
+             {{ form_widget(AjoutClient.email, {'attr':{'class':'form-control', 'placeholder':'Email'}}) }}
+             {{ form_errors(AjoutClient.email) }}
+        </div>
+        <div class="form-control">
+                {{ form_widget(AjoutClient.adresse, {'attr':{'class':'form-control', 'placeholder':'Adresse'}}) }}
+                {{ form_errors(AjoutClient.adresse) }}
+        </div>
+        <div class="form-control">
+                {{ form_widget(AjoutClient.num_tel, {'attr':{'class':'form-control', 'placeholder':'Numero de telephone'}}) }}
+                {{ form_errors(AjoutClient.num_tel) }}
+        </div>
+        <div class="form-control">
+                {{ form_widget(AjoutClient.password, {'attr':{'class':'form-control', 'placeholder':'Mot de passe'}}, {label: 'Password'}) }}
+                {{ form_errors(AjoutClient.password) }}
+        </div>
+                <br>
+        <div class="btn-block">
+                {{ form_widget(AjoutClient.Register) }}
+        </div>
 {{ form_end(AjoutClient) }}
+
+
+        </section>
+{% endblock %}

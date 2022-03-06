@@ -24,12 +24,12 @@ class Personnel extends Users
     /**
      * @ORM\Column(type="float")
      */
-    private $nbre_heures;
+    public $nbre_heures;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $matricule_truck;
+    public $matricule_truck;
 
     public function getId(): ?int
     {

@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ClientController extends AbstractController
 {
@@ -27,12 +28,15 @@ class ClientController extends AbstractController
     }
 
     /**
-     * @Route("/ajoutClient", name="ajout_client")
+     * @Route("/ajoutClient", name="ajout_Client")
      */
     public function AjoutClient(Request $request, UserPasswordEncoderInterface $userPasswordEncoder, GuardAuthenticatorHandler $guardHandler, UsersAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $client = new Client();
         $formc = $this->createForm(AjoutClientType::class, $client);
+        $formc->add('Register', SubmitType::class, [
+            'attr'=>['class' =>'btn btn-block']
+        ]);
         $formc->handleRequest($request);
 
         if ($formc->isSubmitted() && $formc->isValid()) {
@@ -47,9 +51,9 @@ class ClientController extends AbstractController
 
          /*   $entityManager->persist($client);
             $entityManager->flush();*/
-            $em=$this->getDoctrine()->getManager();
-            $em->persist($client);
-            $em->flush();
+           $entityManager=$this->getDoctrine()->getManager();
+            $entityManager->persist($client);
+            $entityManager->flush();
             // do anything else you need here, like send an email
 
             return $guardHandler->authenticateUserAndHandleSuccess(
@@ -64,6 +68,16 @@ class ClientController extends AbstractController
             'AjoutClient' => $formc->createView(),
         ]);
 
+    }
+
+    /**
+     * @Route("/client/detailsCompte", name="client_detailsCompte")
+     */
+    public function compte(): Response
+    {
+        $user = $this->getUser();
+        return $this->render('client/detailsCompte.html.twig', [
+            'user' => $user]);
     }
 
 

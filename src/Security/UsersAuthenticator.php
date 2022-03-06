@@ -91,12 +91,22 @@ class UsersAuthenticator extends AbstractFormLoginAuthenticator implements Passw
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
+        $user= $token->getUser();
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
+        $role =$user->getRoles();
+        if ($role == ['ROLE_CLIENT']){
+            return new RedirectResponse($this->urlGenerator->generate('app_client'));
+        }
+        if ($role== ['ROLE_ADMIN']){
+            return new RedirectResponse($this->urlGenerator->generate('app_admin'));
+        }
+        if ($role== ['ROLE_PERSONNEL']){
+            return new RedirectResponse($this->urlGenerator->generate('app_personnel'));
+        }
 
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.'app_login');
+        //throw new \Exception('TODO: provide a valid redirect inside '.'app_login');
     }
 
     protected function getLoginUrl()

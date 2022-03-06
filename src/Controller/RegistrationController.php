@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Admin;
 use App\Entity\Client;
 use App\Entity\Users;
-use App\Form\AjoutClientType;
 use App\Form\RegistrationFormType;
 use App\Security\UsersAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
