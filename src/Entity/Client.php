@@ -20,7 +20,7 @@ class Client extends Users
     /**
      * @ORM\Column(type="integer")
      */
-    protected $num_tel;
+    public $num_tel;
 
     public function getId(): ?int
     {

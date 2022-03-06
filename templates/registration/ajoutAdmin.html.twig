@@ -1,16 +1,42 @@
-
+{% extends 'admin/index.html.twig' %}
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_start(ajoutAdmin) }}
+    <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+            <div class="card z-index-0">
+                <div class="card-header text-center pt-4">
+                    <h5>Register with</h5>
+                </div>
 
-    {{ form_row(ajoutAdmin.nom) }}
-    {{ form_row(ajoutAdmin.prenom) }}
-    {{ form_row(ajoutAdmin.email) }}
-    {{ form_row(ajoutAdmin.plainPassword, {
-        label: 'Password'
-    }) }}
+                <div class="card-body">
+                    {{ form_start(AjoutAdmin) }}
+                    <div class="mb-3">
+                        {{ form_widget(AjoutAdmin.nom, {'attr':{'class':'form-control', 'placeholder':'Nom'}}) }}
+                        {{ form_errors(AjoutAdmin.nom) }}
+                    </div>
 
-    <button type="submit" class="btn">Register</button>
-    {{ form_end(ajoutAdmin) }}
-{% endblock %}
+
+                    <div class="mb-3">
+                        {{ form_widget(AjoutAdmin.prenom, {'attr':{'class':'form-control', 'placeholder':'Prenom'}}) }}
+                        {{ form_errors(AjoutAdmin.prenom) }}
+                    </div>
+
+
+                    <div class="mb-3">
+                        {{ form_widget(AjoutAdmin.email, {'attr':{'class':'form-control', 'placeholder':'Email'}}) }}
+                        {{ form_errors(AjoutAdmin.email) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_widget(AjoutAdmin.password, {'attr':{'class':'form-control', 'placeholder':'Mot de passe'}}, {label: 'Password'}) }}
+                        {{ form_errors(AjoutAdmin.password) }}
+                    </div>
+                    <div class="btn-block text-center">
+                        {{ form_widget(AjoutAdmin.Ajouter) }}
+                    </div>
+
+                    {{ form_end(AjoutAdmin) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

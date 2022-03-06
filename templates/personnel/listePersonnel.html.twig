@@ -45,12 +45,12 @@
                                 </td>
 
                                 <td class="align-middle">
-                                    <a href="#" class="font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Modifier">
+                                    <a href="{{ path('admin_modifier_personnel',{"id": perso.id}) }}" class="font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Modifier">
                                         Modifier
                                     </a>
                                 </td>
                                 <td class="align-middle">
-                                    <a href="/admin/personnel/delete/{id}" class="font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Supprimer">
+                                    <a href={{ path('admin_delete_personnel',{"id": perso.id}) }}"" class="font-weight-bold text-xs" onclick="return confirm('Attention cet utilisateur va être supprimé voulez vous continuez?')" data-toggle="tooltip" data-original-title="Supprimer">
                                         Supprimer
                                     </a>
                                 </td>

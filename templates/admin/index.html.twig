@@ -9,7 +9,7 @@
                   <img alt="Image placeholder" src="/../backAssets/img/theme/team-4-800x800.jpg">
                 </span>
                     <div class="media-body ml-2 d-none d-lg-block">
-                        <span class="mb-0 text-sm  font-weight-bold"></span>
+                        <span class="mb-0 text-sm text-uppercase font-weight-bold">{{ app.user.prenom }} {{ app.user.nom }}</span>
                     </div>
                 </div>
             </a>
@@ -24,13 +24,22 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link " href="/admin/listeClient">
+                <i class="ni ni-single-02 text-yellow"></i> Liste des Clients
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link " href="/admin/listePersonnel">
-                <i class="ni ni-single-02 text-yellow"></i> Liste des utilisateurs
+                <i class="ni ni-single-02 text-yellow"></i> Liste des Personnels
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link " href="/admin/ajoutPersonnel">
-                <i class="ni ni-single-02 text-yellow"></i> Ajouter Utilisateur
+                <i class="ni ni-single-02 text-yellow"></i> Ajouter Personnel
+            </a>
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/ajoutAdmin">
+                <i class="ni ni-single-02 text-yellow"></i> Ajouter Administrateur
             </a>
         </li>
         <li class="nav-item">
@@ -57,6 +66,14 @@
             <a class="nav-link" href="./examples/register.html">
                 <i class="ni ni-circle-08 text-pink"></i> Reclammations
             </a>
+        </li>
+        <li class="nav-item  active ">
+            <div class="dropdown-divider"></div>
+            <a href="{{ path('app_logout') }}" class="dropdown-item">
+                <i class="ni ni-user-run"></i>
+                <span>Se deconnecter</span>
+            </a>
+            </div>
         </li>
     </ul>
 {% endblock SideNav %}

@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Personnel;
 use App\Form\AjoutClientType;
+use App\Form\AjoutPersonnelType;
 use App\Form\RegistrationFormType;
 use App\Security\UsersAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -70,14 +72,24 @@ class ClientController extends AbstractController
 
     }
 
+
     /**
-     * @Route("/client/detailsCompte", name="client_detailsCompte")
+     * @Route("/modifierCompte/{id}", name="client_modifier_compte")
+     * @param Client $client
+     * @param Request $request
+     * @return Response
      */
-    public function compte(): Response
+    public function modifierClient(Client $client, Request $request): Response
     {
-        $user = $this->getUser();
-        return $this->render('client/detailsCompte.html.twig', [
-            'user' => $user]);
+        $form= $this->createForm(AjoutClientType::class, $client);
+        $form->add('Modifier', SubmitType::class, ['attr'=>['class' =>'btn btn-block']]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $em= $this->getDoctrine()->getManager();
+            $em->flush();
+            return $this->redirectToRoute('app_client');
+        }
+        return $this->render("client/detailsCompte.html.twig", ["form"=>$form->createView()]);
     }
 
 

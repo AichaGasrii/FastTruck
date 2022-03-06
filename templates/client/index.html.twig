@@ -2,7 +2,7 @@
 
 {% block title %}Hello ClientController!{% endblock %}
 {% block client %}
-    <a href="/client/detailsCompte" class="user_link">
+    <a href="{{ path('client_modifier_compte', {"id": app.user.id}) }}" class="user_link">
         <i class="fa fa-user" aria-hidden="true"></i>
     </a>
     <a class="cart_link" href="#">
