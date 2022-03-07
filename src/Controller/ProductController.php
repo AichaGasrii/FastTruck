@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * @Route("/")
+ * @Route("/product")
  */
 class ProductController extends AbstractController
 {

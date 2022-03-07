@@ -1,6 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Product index{% endblock %}
+{% block client %}
+    <form class="form-inline">
+        <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+    </form>
+    <a href="/ajoutClient" class="order_online">
+        S'inscrire
+    </a>
+{% endblock %}
 
 {% block body %}
     <section class="food_section layout_padding">

@@ -1,0 +1,67 @@
+{% extends 'admin/index.html.twig' %}
+{% block body %}
+
+<div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+                <div class="card z-index-0">
+<div class="card-header text-center pt-4">
+        <h5>Register with</h5>
+</div>
+
+<div class="card-body">
+  {{ form_start(AjoutPersonnel) }}
+                <div class="mb-3">
+                   {{ form_widget(AjoutPersonnel.nom, {'attr':{'class':'form-control', 'placeholder':'Nom'}}) }}
+                   {{ form_errors(AjoutPersonnel.nom) }}
+                </div>
+
+
+                <div class="mb-3">
+                   {{ form_widget(AjoutPersonnel.prenom, {'attr':{'class':'form-control', 'placeholder':'Prenom'}}) }}
+                   {{ form_errors(AjoutPersonnel.prenom) }}
+                </div>
+
+
+                <div class="mb-3">
+                    {{ form_widget(AjoutPersonnel.email, {'attr':{'class':'form-control', 'placeholder':'Email'}}) }}
+                    {{ form_errors(AjoutPersonnel.email) }}
+                </div>
+
+               <div class="mb-3">
+                    {{ form_widget(AjoutPersonnel.salaire, {'attr':{'class':'form-control', 'placeholder':'Salaire'}}) }}
+                    {{ form_errors(AjoutPersonnel.salaire) }}
+               </div>
+
+
+               <div class="mb-3">
+                    {{ form_widget(AjoutPersonnel.role, {'attr':{'class':'form-control', 'placeholder':'Role'}}) }}
+                    {{ form_errors(AjoutPersonnel.role) }}
+               </div>
+
+
+                <div class="mb-3">
+                     {{ form_widget(AjoutPersonnel.nbre_heures, {'attr':{'class':'form-control', 'placeholder':'Nombre heures'}}) }}
+                     {{ form_errors(AjoutPersonnel.nbre_heures) }}
+                </div>
+
+
+                <div class="mb-3">
+                      {{ form_widget(AjoutPersonnel.matricule_truck, {'attr':{'class':'form-control', 'placeholder':'Matricule truck'}}) }}
+                      {{ form_errors(AjoutPersonnel.matricule_truck) }}
+                </div>
+
+
+                <div class="mb-3">
+                      {{ form_widget(AjoutPersonnel.password, {'attr':{'class':'form-control', 'placeholder':'Mot de passe'}}, {label: 'Password'}) }}
+                      {{ form_errors(AjoutPersonnel.password) }}
+                </div>
+                <div class="btn-block text-center">
+                       {{ form_widget(AjoutPersonnel.Ajouter) }}
+                </div>
+
+  {{ form_end(AjoutPersonnel) }}
+</div>
+</div>
+</div>
+</div>
+{% endblock body %}

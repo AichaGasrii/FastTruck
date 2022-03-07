@@ -1,0 +1,42 @@
+{% extends 'client/index.html.twig' %}
+{% block body %}
+
+    <section class="login-dark">
+        {{ form_start(form) }}
+        <h1>S'inscrire</h1>
+
+
+        <div class="form-control">
+            {{ form_widget(form.nom, {'attr':{'class':'form-control', 'placeholder':'Nom'}}) }}
+            {{ form_errors(form.nom) }}
+        </div>
+        <div class="form-control">
+            {{ form_widget(form.prenom, {'attr':{'class':'form-control', 'placeholder':'Prenom'}}) }}
+            {{ form_errors(form.prenom) }}
+        </div>
+
+        <div class="form-control">
+            {{ form_widget(form.email, {'attr':{'class':'form-control', 'placeholder':'Email'}}) }}
+            {{ form_errors(form.email) }}
+        </div>
+        <div class="form-control">
+            {{ form_widget(form.adresse, {'attr':{'class':'form-control', 'placeholder':'Adresse'}}) }}
+            {{ form_errors(form.adresse) }}
+        </div>
+        <div class="form-control">
+            {{ form_widget(form.num_tel, {'attr':{'class':'form-control', 'placeholder':'Numero de telephone'}}) }}
+            {{ form_errors(form.num_tel) }}
+        </div>
+        <div class="form-control">
+            {{ form_widget(form.password, {'attr':{'class':'form-control', 'placeholder':'Mot de passe'}}, {label: 'Password'}) }}
+            {{ form_errors(form.password) }}
+        </div>
+        <br>
+        <div class="btn-block">
+            {{ form_widget(form.Modifier) }}
+        </div>
+        {{ form_end(form) }}
+
+
+    </section>
+{% endblock %}
