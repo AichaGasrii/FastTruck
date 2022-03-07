@@ -1,0 +1,37 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Equippement index{% endblock %}
+
+{% block body %}
+    <h1>Equippement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Metier</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for equippement in equippements %}
+            <tr>
+                <td>{{ equippement.id }}</td>
+                <td>{{ equippement.nom }}</td>
+                <td>{{ equippement.metier }}</td>
+                <td>
+                    <a href="{{ path('equippement_show', {'id': equippement.id}) }}">show</a>
+                    <a href="{{ path('equippement_edit', {'id': equippement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('equippement_new') }}">Create new</a>
+{% endblock %}

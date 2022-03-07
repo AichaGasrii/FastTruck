@@ -1,0 +1,39 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Reponse index{% endblock %}
+
+{% block body %}
+    <h1>Reponse index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+
+                <th>Commentaire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reponse in reponses %}
+            <tr>
+                <td>{{ reponse.id }}</td>
+
+                <td>{{ reponse.commentaire }}</td>
+
+                <td>
+                    <a href="{{ path('reponse_show', {'id': reponse.id}) }}">show</a>
+                    <a href="{{ path('reponse_edit', {'id': reponse.id}) }}">edit</a>
+                    <a href="{{ path('reponse_delete', {'id': reponse.id}) }}">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('reponse_new') }}">Create new</a>
+{% endblock %}
