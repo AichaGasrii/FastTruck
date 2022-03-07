@@ -19,7 +19,7 @@ class Livreurs
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string")
      *  @Assert\NotBlank
      * @Assert\Length(
      *  min= 5,
@@ -29,7 +29,7 @@ class Livreurs
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string")
      * @Assert\NotBlank
      * @Assert\Length(
      *  min= 5,
@@ -40,18 +40,26 @@ class Livreurs
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *  min= 8,
+     *  max= 255
+     *  )
      */
     private $tel;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string")
      * @Assert\NotBlank
      * @Assert\Length(
-     *  min= 10,
-     *  max= 255
+     *  min= 8,
+     *  max= 8
      *  )
+     *  @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      */
-    private $email;
+    protected $email;
 
     public function getId(): ?int
     {

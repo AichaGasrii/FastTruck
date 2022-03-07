@@ -25,14 +25,15 @@
                 <td>{{ element.quantite }}</td>
                 <td class="text-end">{{ element.quantite * element.produit.price }} €</td>
                 <td>
-                    <a href="{{path("cart_add", {id: element.produit.id})}}" class="btn btn-success">
-                        <i class="bi bi-cart-plus"></i>
+                    <a href="{{path("cart_add", {id: element.produit.id})}}"
+                    <button type="button" class="btn btn-outline-success">Add</button>
+
                     </a>
-                    <a href="{{path("cart_remove", {id: element.produit.id})}}" class="btn btn-warning">
-                        <i class="bi bi-cart-dash"></i>
+                    <a href="{{path("cart_remove", {id: element.produit.id})}}"
+                    <button type="button" class="btn btn-outline-primary">Remove</button>
                     </a>
-                    <a href="{{path("cart_delete", {id: element.produit.id})}}" class="btn btn-danger">
-                        <i class="bi bi-cart-x"></i>
+                    <a href="{{path("cart_delete", {id: element.produit.id})}}"
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
                     </a>
                 </td>
             </tr>
@@ -47,8 +48,8 @@
             <td colspan="3">Total</td>
             <td class="text-end">{{ total }} €</td>
             <td>
-                <a href="{{path("cart_delete_all")}}" class="btn btn-danger">
-                    <i class="bi bi-cart-x"></i>
+                <a href="{{path("cart_delete_all")}}"
+                <button type="button" class="btn btn-outline-danger">Delete</button>
                 </a>
             </td>
         </tr>

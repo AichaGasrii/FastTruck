@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pack{% endblock %}
+
+{% block body %}
+    <h1>Pack</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ Pack.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ Pack.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ Pack.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Numcommande</th>
+                <td>{{ Pack.numcommande }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ Pack.text }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('Pack_index') }}">back to list</a>
+
+    <a href="{{ path('Pack_edit', {'id': Pack.id}) }}">edit</a>
+
+    {{ include('Pack/_delete_form.html.twig') }}
+{% endblock %}

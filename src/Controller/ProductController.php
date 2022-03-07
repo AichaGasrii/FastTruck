@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * @Route("/product")
+ * @Route("/")
  */
 class ProductController extends AbstractController
 {
@@ -27,7 +27,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="product_new", methods={"GET","POST"})
+     * @Route("/product/new", name="product_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
