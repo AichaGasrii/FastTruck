@@ -1,0 +1,30 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Equippement{% endblock %}
+
+{% block body %}
+    <h1>Equippement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ equippement.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ equippement.nom }}</td>
+            </tr>
+            <tr>
+                <th>Metier</th>
+                <td>{{ equippement.metier }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('equippement_index') }}">back to list</a>
+
+    <a href="{{ path('equippement_edit', {'id': equippement.id}) }}">edit</a>
+
+    {{ include('equippement/_delete_form.html.twig') }}
+{% endblock %}

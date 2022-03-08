@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Merci pour votre confiance! {% endblock %}
+
+{% block body %}
+
+
+Bonjour! Vous avez bien Postulé!
+
+
+Thanks!
+
+{# Makes an absolute URL to the /images/logo.png file #}
+<img src="{{ absolute_url(asset('images/logo.png')) }}">
+
+{% endblock %}

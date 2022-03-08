@@ -1,0 +1,68 @@
+{% extends 'admin/index.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Liste des personnels</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                            <tr>
+                                <th class="text-uppercase text-xxs font-weight-bolder ">Personnel</th>
+                                <th class="text-uppercase text-xxs font-weight-bolder ps-2">Role</th>
+                                <th class="text-center text-uppercase text-xxs font-weight-bolder">Salaire</th>
+                                <th class="text-center text-uppercase text-xxs font-weight-bolder ">Nombre d'heures de travail</th>
+                                <th class="text-center text-uppercase text-xxs font-weight-bolder">Matricule Truck</th>
+                                <th class="text-secondary opacity-7"></th>
+                                <th class="text-secondary opacity-7"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for perso in personnels %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm text-uppercase">{{ perso.prenom}} {{ perso.nom }}</h6>
+                                            <p class="text-xs mb-0">{{perso.email}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold text-uppercase mb-0">{{ perso.role }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold text-uppercase mb-0">{{ perso.salaire }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold text-uppercase mb-0">{{ perso.nbre_heures }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold text-uppercase mb-0">{{ perso.matricule_truck }}</p>
+                                </td>
+
+                                <td class="align-middle">
+                                    <a href="{{ path('admin_modifier_personnel',{"id": perso.id}) }}" class="font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Modifier">
+                                        Modifier
+                                    </a>
+                                </td>
+                                <td class="align-middle">
+                                    <a href={{ path('admin_delete_personnel',{"id": perso.id}) }}"" class="font-weight-bold text-xs" onclick="return confirm('Attention cet utilisateur va être supprimé voulez vous continuez?')" data-toggle="tooltip" data-original-title="Supprimer">
+                                        Supprimer
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
