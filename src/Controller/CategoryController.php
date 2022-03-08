@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Category;
-use App\Entity\Product;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
-use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,16 +25,6 @@ class CategoryController extends AbstractController
         ]);
     }
 
-
-    /**
-     * @Route("/stat", name="product_back_stat", methods={"GET"})
-     */
-    public function dashboard(CategoryRepository $categoryRepository): Response
-    {
-        return $this->render('product_back/Dashboard.html.twig', [
-            'categories'=>$categoryRepository->findAll(),
-        ]);
-    }
     /**
      * @Route("/new", name="category_new", methods={"GET","POST"})
      */
@@ -103,7 +91,4 @@ class CategoryController extends AbstractController
 
         return $this->redirectToRoute('category_index', [], Response::HTTP_SEE_OTHER);
     }
-
-
-
 }

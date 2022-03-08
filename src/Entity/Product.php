@@ -21,10 +21,6 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     *  @Assert\Length(
-     *  min= 4,
-     *  max= 20
-     *  )
      */
     private $name;
 
@@ -33,7 +29,7 @@ class Product
      * @Assert\NotBlank
      * @Assert\Length(
      *  min= 20,
-     *  max= 60
+     *  max= 255
      *  )
      */
     private $description;
@@ -51,25 +47,13 @@ class Product
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
-     * @Assert\NotBlank
      */
     private $category;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $Quantite;
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $Discount=null;
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $Initial_Price;
 
     /**
      * @param $id
@@ -86,7 +70,6 @@ class Product
     {
         return $this->id;
     }
-
 
     public function getName(): ?string
     {
@@ -160,30 +143,6 @@ class Product
     public function setQuantite(?int $Quantite): self
     {
         $this->Quantite = $Quantite;
-
-        return $this;
-    }
-
-    public function getDiscount(): ?float
-    {
-        return $this->Discount;
-    }
-
-    public function setDiscount(?float $Discount): self
-    {
-        $this->Discount = $Discount;
-
-        return $this;
-    }
-
-    public function getInitialPrice(): ?float
-    {
-        return $this->Initial_Price;
-    }
-
-    public function setInitialPrice(?float $Initial_Price): self
-    {
-        $this->Initial_Price = $Initial_Price;
 
         return $this;
     }

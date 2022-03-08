@@ -1,0 +1,42 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Fournisseur{% endblock %}
+
+{% block body %}
+    <h1>Fournisseur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fournisseur.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ fournisseur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ fournisseur.numero }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ fournisseur.designation }}</td>
+            </tr>
+            <tr>
+                <th>Statu</th>
+                <td>{{ fournisseur.statu }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ fournisseur.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('fournisseur_index') }}">back to list</a>
+
+    <a href="{{ path('fournisseur_edit', {'id': fournisseur.id}) }}">edit</a>
+
+    {{ include('fournisseur/_delete_form.html.twig') }}
+{% endblock %}

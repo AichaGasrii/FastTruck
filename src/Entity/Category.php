@@ -2,12 +2,10 @@
 
 namespace App\Entity;
 
-use App\Entity\Product;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
@@ -23,15 +21,12 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
-     *
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
-     * * @Assert\Length(
-     *  min= 10
-     *  )
+     *
      */
     private $text;
 
@@ -39,11 +34,6 @@ class Category
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="category")
      */
     private $products;
-
-    /**
-     * @ORM\Column(type="string", length=7)
-     */
-    private $color;
 
     public function __construct()
     {
@@ -112,16 +102,5 @@ class Category
     {
         return $this->name;
     }
-
-    public function getColor(): ?string
-    {
-        return $this->color;
-    }
-
-    public function setColor(?string $color): self
-    {
-        $this->color = $color;
-
-        return $this;
-    }
 }
+
