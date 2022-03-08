@@ -13,11 +13,6 @@ class ReclamationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('id_reclamation',TextType::class,[
-                'attr'=>[
-                    'class'=>'form-control form-control-alternative'
-                ]
-            ])
             ->add('description',TextType::class,[
                 'attr'=>[
                     'class'=>'form-control form-control-alternative'

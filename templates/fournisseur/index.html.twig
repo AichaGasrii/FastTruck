@@ -1,7 +1,6 @@
-{% extends 'baseBack.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Product index{% endblock %}
-
 {% block body %}
 <div class="container-fluid mt--7">
 <!-- Table -->
@@ -19,7 +18,7 @@
     <th>Nom</th>
     <th>Numero</th>
     <th>Designation</th>
-    <th>Statu</th>
+        <th>Statu</th>
     <th>Email</th>
     <th>actions</th>
     </tr>
@@ -50,18 +49,28 @@
     {{ fournisseur.Designation }}
 </span>
 </td>
-<td>
+    <span class="badge badge-dot mr-4">
+    {% if fournisseur.Statu == 0 %}
+        <td><label class="badge badge-warning">En cours</label></td>
+    {% elseif fournisseur.Statu == 1 %}
+        <td><label class="badge badge-success">validé</label></td>
+    {% else %}
+        <td><label class="badge badge-danger">Refusé</label></td>
+    {% endif %}
+    <td>
 <span class="badge badge-dot mr-4">
-    {{ fournisseur.Statu }}
+    {{ fournisseur.Email }}
+</span>
+    </td>
+<td>
+
+
+
 </span>
 </td>
 
 </td>
-<td>
-<span class="badge badge-dot mr-4">
-    {{ fournisseur.Email }}
-</span>
-</td>
+
 <td >
 <a href="{{ path('fournisseur_edit', {'id': fournisseur.id}) }}">edit</a>
     </td>
@@ -104,4 +113,15 @@
 </div>
 
 
+    <script>
+
+         {% set message='' %}
+        {% for stock in stocks %}
+        {% if stock.qteProd == 0 %}
+        {% set message=message~stock.nom~' est out of stock, contactez le fournisseur '~stock.fournisseur~'\\n' %}
+        {% endif %}
+        {% endfor %}
+        window.onload = function() {
+            alert('{{ message }}');}
+    </script>
 {% endblock %}

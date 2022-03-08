@@ -45,9 +45,14 @@ class Reclamation
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="reclamation")
+     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="reclamation",cascade={"persist", "remove"},orphanRemoval=true)
      */
     private $reponses;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $etat;
 
     public function __construct()
     {
@@ -150,6 +155,18 @@ class Reclamation
                 $reponse->setReclamation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEtat(): ?int
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(?int $etat): self
+    {
+        $this->etat = $etat;
 
         return $this;
     }

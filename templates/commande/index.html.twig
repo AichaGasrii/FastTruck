@@ -34,6 +34,8 @@
                                 <th>iduser</th>
                                 <th>date</th>
                                 <th>montant</th>
+                                <th>etat</th>
+                                <th>actions</th>
 
                             </tr>
                             </thead>
@@ -52,6 +54,14 @@
                                     <td>
                                         {{ co.montant }}
                                     </td>
+
+                                    {% if co.etat == 0 %}
+                                        <td><label class="badge badge-warning">En cours</label></td>
+                                    {% elseif co.etat == 1 %}
+                                        <td><label class="badge badge-success">validé</label></td>
+                                    {% else %}
+                                        <td><label class="badge badge-danger">Refusé</label></td>
+                                    {% endif %}
                                     <td >
                                         <a href="{{ path('commnade_edit', {'id': co.id}) }}">edit</a>
                                     </td>

@@ -6,6 +6,7 @@ use App\Repository\FournisseurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -41,7 +42,7 @@ class Fournisseur
     private $designation;
 
     /**
-     * @ORM\Column(type="string", length=66)
+     * @ORM\Column(type="integer", length=66)
      */
     private $statu;
 
@@ -104,7 +105,7 @@ class Fournisseur
         return $this;
     }
 
-    public function getStatu(): ?string
+    public function getStatu(): ?int
     {
         return $this->statu;
     }
@@ -112,7 +113,7 @@ class Fournisseur
     {
         return $this->nom;
     }
-    public function setStatu(?string $statu): self
+    public function setStatu(?int $statu): self
     {
         $this->statu = $statu;
 

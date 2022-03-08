@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 
 /**
  * @Route("/reclamation")
@@ -24,7 +26,51 @@ class ReclamationController extends AbstractController
             'reclamations' => $reclamationRepository->findAll(),
         ]);
     }
+    /**
+     * @Route("/stats", name="statReclamation")
+     */
+    public function stat()
+    {
+        $repository = $this->getDoctrine()->getRepository(Reclamation::class);
+        $reclamations = $repository->findAll();
 
+        $em = $this->getDoctrine()->getManager();
+
+        $r1=0;
+        $r2=0;
+
+        foreach ($reclamations as $reclamation)
+        {
+            if ( $reclamation->getEtat()==1) :
+
+                $r1+=1;
+            else:
+
+                $r2+=1;
+
+
+            endif;
+
+        }
+
+        $pieChart = new PieChart();
+        $pieChart->getData()->setArrayToDataTable(
+            [['etat', 'nombre'],
+                ['valide', $r1],
+                ['en cours', $r2],
+            ]
+        );
+        $pieChart->getOptions()->setTitle('Statiqtiques ');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+
+        return $this->render('reclamation/stat.html.twig', array('piechart' => $pieChart));
+    }
     /**
      * @Route("/new", name="reclamation_new", methods={"GET","POST"})
      */
@@ -91,4 +137,28 @@ class ReclamationController extends AbstractController
 
         return $this->redirectToRoute('reclamation_index', [], Response::HTTP_SEE_OTHER);
     }
+    /**
+ * @Route("/{id}/valide", name="reclamation_valide")
+ * @param Reclamation $reclamation
+ * @return RedirectResponse
+ */
+    public function valide (Reclamation $reclamation): RedirectResponse
+    {   $reclamation->setEtat(1);
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+        return $this->redirectToRoute("reclamation_index");
+    }
+    /**
+     * @Route("/{id}/refuse", name="reclamation_refuse")
+     * @param Reclamation $reclamation
+     * @return RedirectResponse
+     */
+    public function refuse (Reclamation $reclamation): RedirectResponse
+    {   $reclamation->setEtat(2);
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+        return $this->redirectToRoute("reclamation_index");
+    }
+
+    
 }

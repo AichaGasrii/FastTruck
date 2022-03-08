@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\Product1Type;
+use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,7 +20,7 @@ class ProductBackController extends AbstractController
     /**
      * @Route("/", name="product_back_index", methods={"GET"})
      */
-    public function index(ProductRepository $productRepository): Response
+    public function index(ProductRepository $productRepository,CategoryRepository $categoryRepository): Response
     {
         return $this->render('product_back/index.html.twig', [
             'products' => $productRepository->findAll(),
@@ -36,6 +38,7 @@ class ProductBackController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $product->setInitialPrice($product->getPrice());
             $entityManager->persist($product);
             $entityManager->flush();
 
@@ -90,5 +93,33 @@ class ProductBackController extends AbstractController
         }
 
         return $this->redirectToRoute('product_back_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/{id}/addDiscount", name="product_back_discount", methods={"GET","POST"})
+     */
+    public function addDiscount(Request $request, Product $product): Response
+    {
+        $form = $this->createForm(Product1Type::class, $product);
+        $form->remove('name');
+        $form->remove('description');
+        $form->remove('image');
+        $form->remove('category');
+        $form->remove('Quantite');
+
+        $form->add('Discount',NumberType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $product->setPrice($product->getPrice()-($product->getPrice()*$product->getDiscount()/100));
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('product_back_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('product_back/edit.html.twig', [
+            'product' => $product,
+            'form' => $form->createView(),
+        ]);
     }
 }

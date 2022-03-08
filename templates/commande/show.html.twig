@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseBack.html.twig' %}
 
 {% block title %}Commande{% endblock %}
 
@@ -17,13 +17,21 @@
             </tr>
             <tr>
                 <th>date</th>
-                <td>{{ commande.date }}</td>
+                <td>{{  commande.date ? commande.date|date('Y-m-d') : ''  }}</td>
 
             </tr>
             <tr>
                 <th>montant</th>
                 <td>{{ commande.montant }}</td>
 
+            </tr>
+            <tr>
+
+                <td><a href="{{ path('commande_valide', {"id": commande.id}) }}">valider</a></td>
+            </tr>
+            <tr>
+
+                <td><a href="{{ path('commande_refuse', {"id": commande.id}) }}">refuse</a></td>
             </tr>
         </tbody>
     </table>

@@ -36,6 +36,8 @@ class ReponseController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $reclamation=$reponse->getReclamation();
+            $reclamation->setEtat(1);
             $entityManager->persist($reponse);
             $entityManager->flush();
 

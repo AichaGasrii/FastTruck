@@ -29,6 +29,14 @@
                 <th>Email</th>
                 <td>{{ reclamation.email }}</td>
             </tr>
+            <tr>
+
+                <td><a href="{{ path('reclamation_valide', {"id": reclamation.id}) }}">valider</a></td>
+            </tr>
+            <tr>
+
+                <td><a href="{{ path('reclamation_refuse', {"id": reclamation.id}) }}">refuse</a></td>
+            </tr>
         </tbody>
     </table>
 

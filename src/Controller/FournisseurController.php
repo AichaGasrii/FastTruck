@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Fournisseur;
 use App\Form\FournisseurType;
+use App\Repository\CategoryRepository;
 use App\Repository\FournisseurRepository;
+use App\Repository\StocksRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,9 +21,20 @@ class FournisseurController extends AbstractController
     /**
      * @Route("/", name="fournisseur_index", methods={"GET"})
      */
-    public function index(FournisseurRepository $fournisseurRepository): Response
+    public function index(FournisseurRepository $fournisseurRepository,StocksRepository $stocksRepository): Response
     {
         return $this->render('fournisseur/index.html.twig', [
+            'fournisseurs' => $fournisseurRepository->findAll(),
+            'stocks' => $stocksRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/stats", name="Stocks_stat", methods={"GET"})
+     */
+    public function board(FournisseurRepository $fournisseurRepository): Response
+    {
+        return $this->render('stocks/Dashboard1.html.twig', [
             'fournisseurs' => $fournisseurRepository->findAll(),
         ]);
     }
@@ -90,5 +104,27 @@ class FournisseurController extends AbstractController
         }
 
         return $this->redirectToRoute('fournisseur_index', [], Response::HTTP_SEE_OTHER);
+    }
+    /**
+     * @Route("/{id}/valide", name="fournisseur_valide")
+     * @param Fournisseur $fournisseur
+     * @return RedirectResponse
+     */
+    public function valide (Fournisseur $fournisseur): RedirectResponse
+    {   $fournisseur->setStatu(1);
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+        return $this->redirectToRoute("fournisseur_index");
+    }
+    /**
+     * @Route("/{id}/refuse", name="fournisseur_refuse")
+     * @param Fournisseur $fournisseur
+     * @return RedirectResponse
+     */
+    public function refuse (Fournisseur $fournisseur): RedirectResponse
+    {   $fournisseur->setStatu(2);
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+        return $this->redirectToRoute("fournisseur_index");
     }
 }

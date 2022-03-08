@@ -33,11 +33,7 @@ class FournisseurType extends AbstractType
                                 'class'=>'form-control form-control-alternative'
                             ]
                         ])
-->add('statu',TextareaType::class,[
-                            'attr'=>[
-                                'class'=>'form-control form-control-alternative'
-                            ]
-                        ])
+
                         ->add('email',TextareaType::class,[
                                                     'attr'=>[
                                                         'class'=>'form-control form-control-alternative'

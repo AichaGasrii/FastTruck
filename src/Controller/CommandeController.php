@@ -7,6 +7,7 @@ use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -89,5 +90,27 @@ class CommandeController extends AbstractController
         }
 
         return $this->redirectToRoute('commande_index', [], Response::HTTP_SEE_OTHER);
+    }
+    /**
+     * @Route("/{id}/valide", name="commande_valide")
+     * @param Commande $commande
+     * @return RedirectResponse
+     */
+    public function valide (Commande $commande): RedirectResponse
+    {   $commande->setEtat(1);
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+        return $this->redirectToRoute("commande_index");
+    }
+    /**
+     * @Route("/{id}/refuse", name="commande_refuse")
+     * @param Commande $commande
+     * @return RedirectResponse
+     */
+    public function refuse (Commande $commande): RedirectResponse
+    {   $commande->setEtat(2);
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+        return $this->redirectToRoute("commande_index");
     }
 }

@@ -17,6 +17,7 @@
 
                 <th>Date</th>
                 <th>Email</th>
+                <th>etat</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -31,6 +32,13 @@
                 <td>{{ reclamation.description }}</td>
                 <td>{{ reclamation.date ? reclamation.date|date('Y-m-d') : '' }}</td>
                 <td>{{ reclamation.email }}</td>
+                {% if reclamation.etat == 0 %}
+                    <td><label class="badge badge-warning">En cours</label></td>
+                {% elseif reclamation.etat == 1 %}
+                    <td><label class="badge badge-success">validé</label></td>
+                {% else %}
+                    <td><label class="badge badge-danger">Refusé</label></td>
+                {% endif %}
                 <td>
                     <a href="{{ path('reclamation_show', {'id': reclamation.id}) }}">show</a>
                     <a href="{{ path('reclamation_edit', {'id': reclamation.id}) }}">edit</a>
