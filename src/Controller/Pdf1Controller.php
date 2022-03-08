@@ -35,7 +35,7 @@ class Pdf1Controller extends AbstractController
 
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('product_back/pdf.html.twig', [
-            'tab' => $product,
+            'p' => $product,
 
         ]);
 

@@ -2,22 +2,19 @@
 
 namespace App\Controller;
 
-use App\Repository\CommandeRepository;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
-// Include Dompdf required namespaces
+use App\Repository\ReponseRepository;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
-
-class PdfController extends AbstractController
+class Pdf2Controller extends AbstractController
 {
     /**
-     * @Route("/pdf/{id}", name="pdf")
+     * @Route("/pdf2/{id}", name="app_pdf2")
      */
-    public function index($id,CommandeRepository $rep): Response
+    public function index($id,ReponseRepository $rep): Response
     {
 
         // Configure Dompdf according to your needs
@@ -34,11 +31,11 @@ class PdfController extends AbstractController
 
 
 
-        $commande=$rep->find($id);
+        $reponse=$rep->find($id);
 
         // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('commande/pdf.html.twig', [
-            'co' => $commande,
+        $html = $this->renderView('reponse/pdf.html.twig', [
+            'reponse' => $reponse,
 
         ]);
 
@@ -59,7 +56,5 @@ class PdfController extends AbstractController
         ]);
 
     }
-
-
 
 }

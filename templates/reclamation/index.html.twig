@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Reclamation index{% endblock %}
 
 {% block body %}
@@ -19,6 +20,7 @@
                 <th>actions</th>
             </tr>
         </thead>
+
         <tbody>
         {% for reclamation in reclamations %}
             <tr>
@@ -42,6 +44,6 @@
         {% endfor %}
         </tbody>
     </table>
-
+    {{ include('reclamation/index.html') }}
     <a href="{{ path('reclamation_new') }}">Create new</a>
 {% endblock %}
