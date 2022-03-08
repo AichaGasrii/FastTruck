@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reclamation index{% endblock %}
+
+{% block body %}
+    <h1>Reclamation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+
+                <th>Description</th>
+
+
+                <th>Date</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.id }}</td>
+
+
+                <td>{{ reclamation.nom }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.date ? reclamation.date|date('Y-m-d') : '' }}</td>
+                <td>{{ reclamation.email }}</td>
+                <td>
+                    <a href="{{ path('reclamation_show', {'id': reclamation.id}) }}">show</a>
+                    <a href="{{ path('reclamation_edit', {'id': reclamation.id}) }}">edit</a>
+                    <a href="{{ path('reclamation_delete', {'id': reclamation.id}) }}">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('reclamation_new') }}">Create new</a>
+{% endblock %}
+{% block footer %}
+    <footer class="footer_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-col">
+                    <div class="footer_contact">
+                        <h4>
+                            ON EST LOCALISES
+                        </h4>
+                        <div class="contact_link_box">
+                            <a href="">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <span>
+                  Sur toute la tunisie
+                </span>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <span>
+                  Appelez le +216 96700780
+                </span>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <span>
+                  fast.truck@gmail.com
+                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-col">
+                    <div class="footer_detail">
+                        <a href="" class="footer-logo">
+                            FAST TRUCK
+                        </a>
+                        <p>
+                            ETES VOUS SATISFAITS?
+                        </p>
+                        <p> satisfaction, toujours.</p>
+                        <div class="footer_social">
+                            <a href="">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-pinterest" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-col">
+                    <h4>
+                        ON EST OUVERTS
+                    </h4>
+                    <p>
+                        Tous les jours
+                    </p>
+                    <p>
+                        10.00 Am -10.00 Pm
+                    </p>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>
+                    &copy; <a href="https://html.design/">Copyright 2022. Designed by TITANS</a><br><br>
+                </p>
+            </div>
+        </div>
+    </footer>
+{% endblock footer %}

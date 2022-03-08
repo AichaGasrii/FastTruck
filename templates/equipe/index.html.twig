@@ -1,0 +1,41 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Equipe index{% endblock %}
+
+{% block body %}
+    <h1>Equipe index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Age</th>
+                <th>Metier</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for equipe in equipes %}
+            <tr>
+                <td>{{ equipe.id }}</td>
+                <td>{{ equipe.nom }}</td>
+                <td>{{ equipe.prenom }}</td>
+                <td>{{ equipe.age }}</td>
+                <td>{{ equipe.metier }}</td>
+                <td>
+                    <a href="{{ path('equipe_show', {'id': equipe.id}) }}">show</a>
+                    <a href="{{ path('equipe_edit', {'id': equipe.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('equipe_new') }}">Create new</a>
+{% endblock %}
