@@ -1,0 +1,43 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Product Statistics{% endblock %}
+{% set a=0 %}
+{% for cat in categories %}
+    {% if cat.products|length>a %}
+    {% set a = cat.products|length  %}
+    {% endif %}
+{% endfor %}
+{% block body %}
+    <div class="container-fluid">
+{% for cat in categories %}
+    <div class="col-xl-3 col-lg-6" style="display: inline-block;margin: 10px;">
+    <div class="card card-stats mb-4 mb-xl-0">
+<div class="card-body">
+    <div class="row">
+        <div class="col">
+            <h5 class="card-title text-uppercase text-muted mb-0">{{ cat.name }}</h5>
+            <span class="h2 font-weight-bold mb-0" style="background-color: {{ cat.color }};"></span>
+        </div>
+        <div class="col-auto">
+            <div class="icon icon-shape text-white rounded-circle shadow" style="background-color: {{ cat.color }}">
+                <i class="fas fa-chart-bar" ></i>
+            </div>
+        </div>
+    </div>
+    <p class="mt-3 mb-0 text-muted text-sm">
+        <span class="text-success mr-2">
+            {% if cat.products|length == a %}
+            <i class="fa fa-star"></i>
+            {% elseif cat.products|length > 3 %}
+                <i class="fa fa-arrow-up"></i>
+                {% else %}
+                <i class="fa fa-arrow-down"></i>
+                {% endif %}
+            {{ cat.products|length }}</span>
+    </p>
+</div>
+    </div>
+    </div>
+{% endfor %}
+    </div>
+{% endblock %}
