@@ -22,3 +22,7 @@
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+<<<<<<< HEAD
+=======
+*.zip
+>>>>>>> 9c5f71f1b67fdfae20b4c3de98cb440e83f48037
