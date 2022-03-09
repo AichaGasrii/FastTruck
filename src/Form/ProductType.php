@@ -16,7 +16,7 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name',TextType::class,[
+            ->add('name',TextareaType::class,[
                 'attr'=>[
                     'class'=>'form-control form-control-alternative'
                 ]
@@ -26,17 +26,18 @@ class ProductType extends AbstractType
                     'class'=>'form-control form-control-alternative'
                 ]
             ])
+
             ->add('price',TextType::class,[
                 'attr'=>[
                     'class'=>'form-control form-control-alternative'
                 ]
             ])
-            ->add('image',FileType::class,['mapped' => false,
-                'attr' => array(
-                    'accept' => 'image/jpeg,image/png',
-                    'class'=>'form-control-file'
-                ),
-
+            ->add('image', FileType::class, [
+                'mapped' => false,
+                'data_class' => null,
+                'attr' => [
+                    'placeholder' => "Choisissez une photo"
+                ]
             ])
             ->add('category')
             ->add('Quantite')
