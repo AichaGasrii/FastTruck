@@ -26,7 +26,7 @@ class DefaultController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $qrCode = $qrcodeService->qrcode($data['name']);
+            $qrCode = $qrcodeService->qrcode("http://127.0.0.1:8000/commande/");
         }
 
         return $this->render('default/index.html.twig', [

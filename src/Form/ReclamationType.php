@@ -17,7 +17,7 @@ class ReclamationType extends AbstractType
                 'attr'=>[
                     'class'=>'form-control form-control-alternative'
                 ]
-            ])                   ->add('date')
+            ])
 
             ->add('nom',TextType::class,[
                 'attr'=>[

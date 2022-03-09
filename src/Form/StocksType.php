@@ -37,11 +37,7 @@ class StocksType extends AbstractType
                         ])
             ->add('fournisseur')
 
-            ->add('idprod',TextType::class,[
-                                        'attr'=>[
-                                            'class'=>'form-control form-control-alternative'
-                                        ]
-                                    ])
+
         ;
     }
 

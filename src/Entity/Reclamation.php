@@ -19,10 +19,8 @@ class Reclamation
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_reclamation;
+
+
 
     /**
      * @ORM\Column(type="string", length=55)

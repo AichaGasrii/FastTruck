@@ -5,7 +5,8 @@
 
 {% block body %}
     <h1>Reclamation index</h1>
-
+    <h1>Tri par date</h1>
+    <a href="{{ path('indextri') }}" class="btn btn-primary"></a>
     <table class="table">
         <thead>
             <tr>
@@ -19,6 +20,7 @@
                 <th>Email</th>
                 <th>etat</th>
                 <th>actions</th>
+
             </tr>
         </thead>
 
@@ -26,8 +28,6 @@
         {% for reclamation in reclamations %}
             <tr>
                 <td>{{ reclamation.id }}</td>
-
-
                 <td>{{ reclamation.nom }}</td>
                 <td>{{ reclamation.description }}</td>
                 <td>{{ reclamation.date ? reclamation.date|date('Y-m-d') : '' }}</td>
@@ -43,7 +43,10 @@
                     <a href="{{ path('reclamation_show', {'id': reclamation.id}) }}">show</a>
                     <a href="{{ path('reclamation_edit', {'id': reclamation.id}) }}">edit</a>
                     <a href="{{ path('reclamation_delete', {'id': reclamation.id}) }}">delete</a>
+
                 </td>
+
+
             </tr>
         {% else %}
             <tr>

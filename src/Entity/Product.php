@@ -32,15 +32,16 @@ class Product
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @Assert\Length(
-     *  min= 20,
-     *  max= 60
+     *  min= 10,
+     *  max= 200
      *  )
      */
     private $description;
 
     /**
      * @ORM\Column(type="float")
-     * @Assert\NotBlank
+     * @Assert\NotEqualTo(
+     *
      */
     private $price;
 
@@ -79,6 +80,8 @@ class Product
      * @param $image
      * @param $category
      * @param $Quantite
+     * @param $Discount
+     * @param $Initial_Price
      */
 
 

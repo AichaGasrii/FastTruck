@@ -37,10 +37,7 @@ class Stocks
      */
     private $prix_unitaire;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $idprod;
+
 
     /**
      * @ORM\ManyToOne(targetEntity=Fournisseur::class, inversedBy="stocks")
@@ -101,17 +98,7 @@ class Stocks
         return $this;
     }
 
-    public function getIdprod(): ?int
-    {
-        return $this->idprod;
-    }
 
-    public function setIdprod(?int $idprod): self
-    {
-        $this->idprod = $idprod;
-
-        return $this;
-    }
 
     public function getFournisseur(): ?Fournisseur
     {

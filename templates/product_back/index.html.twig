@@ -9,7 +9,7 @@
             <div class="col">
                 <div class="card shadow">
                     <div class="card-header border-0">
-                        <h3 class="mb-0">Product tables</h3>
+                        <h3 class="mb-0">Products tables</h3>
                     </div>
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
@@ -46,12 +46,9 @@
                       </span>
                                     </td>
 
-
                                     <td >
-                                        <a href="{{ path('product_back_edit', {'id': p.id}) }}">Edit</a>
-                                        <br>
-                                        <a href="{{ path('product_back_delete', {'id': p.id}) }}">Delete</a>
-                                        <br>
+                                        <a href="{{ path('product_edit', {'id': p.id}) }}">Edit</a>
+
                                         <a href="{{ path('product_back_discount', {'id': p.id}) }}">Add Discount</a>
                                     </td>
                                 </tr>
@@ -85,7 +82,7 @@
                                 </li>
                             </ul>
                         </nav>
-                        <a href="{{ path('product_back_new') }}">Create new</a>
+                        <a href="{{ path('product_new') }}">Create new</a>
                     </div>
                 </div>
             </div>

@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/stocks")
  */
@@ -18,11 +19,33 @@ class StocksController extends AbstractController
     /**
      * @Route("/", name="stocks_index", methods={"GET"})
      */
-    public function index(StocksRepository $stocksRepository): Response
+    public function index(StocksRepository $stocksRepository,Request $request): Response
     {
+        $stock=new Stocks();
         return $this->render('stocks/index.html.twig', [
-            'stocks' => $stocksRepository->findAll(),
+            'stocks' => $stock,
         ]);
+    }
+
+
+    /**
+     * @Route("/indextri", name="stocks_indextri", methods={"GET"})
+     */
+    public function indextri(Request $request,StocksRepository $stocksRepository): Response
+    {
+
+
+        $sto = $request->get('sto');
+        $stoc = $this->getDoctrine()
+            ->getManager()
+            ->createQuery('SELECT stocks FROM App\Entity\Stocks stocks order by  stocks.prix_unitaire desc')
+            ->getResult();
+        return $this->render('stocks/index.html.twig', [
+            'stocks' => $stoc
+
+
+        ]);
+
     }
 
     /**
@@ -91,4 +114,6 @@ class StocksController extends AbstractController
 
         return $this->redirectToRoute('stocks_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }

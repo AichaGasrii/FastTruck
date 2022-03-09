@@ -71,12 +71,35 @@ class ReclamationController extends AbstractController
 
         return $this->render('reclamation/stat.html.twig', array('piechart' => $pieChart));
     }
+
+
+    /**
+     * @Route("/indextri", name="indextri", methods={"GET"})
+     */
+    public function indextri(Request $request,ReclamationRepository $reclamationRepository): Response
+    {
+
+
+        $rec = $request->get('rec');
+        $reclamat = $this->getDoctrine()
+            ->getManager()
+            ->createQuery('SELECT reclamation FROM App\Entity\Reclamation reclamation order by  reclamation.date desc')
+            ->getResult();
+        return $this->render('reclamation/index.html.twig', [
+            'reclamations' => $reclamat
+
+
+        ]);
+
+    }
     /**
      * @Route("/new", name="reclamation_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
         $reclamation = new Reclamation();
+        $objDateTime=new\ DateTime('NOW');
+        $reclamation->setDate($objDateTime);
         $form = $this->createForm(ReclamationType::class, $reclamation);
         $form->handleRequest($request);
 
