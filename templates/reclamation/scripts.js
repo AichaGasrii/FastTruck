@@ -1,4 +1,4 @@
-window.onload = () => {
+window.onload = (event) => {
     // On va chercher toutes les étoiles
     var_dump("hello wolrd");
     const stars = document.querySelectorAll(".la-star");

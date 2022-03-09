@@ -122,8 +122,10 @@ class ReclamationController extends AbstractController
      */
     public function show(Reclamation $reclamation): Response
     {
-        return $this->render('reclamation/show.html.twig', [
+        $form = $this->createForm(ReclamationType::class, $reclamation);
+        return $this->render('reclamation/showReclamation.html.twig', [
             'reclamation' => $reclamation,
+            'form'=>$form->createView(),
         ]);
     }
 
