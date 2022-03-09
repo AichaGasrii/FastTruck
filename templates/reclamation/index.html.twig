@@ -1,27 +1,29 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Reclamation index{% endblock %}
+{% block title %}Reclamation index
+{% endblock %}
 
 {% block body %}
+    </div>
     <h1>Reclamation index</h1>
     <h1>Tri par date</h1>
     <a href="{{ path('indextri') }}" class="btn btn-primary"></a>
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
 
-                <th>Description</th>
+            <th>Description</th>
 
 
-                <th>Date</th>
-                <th>Email</th>
-                <th>etat</th>
-                <th>actions</th>
+            <th>Date</th>
+            <th>Email</th>
+            <th>etat</th>
+            <th>actions</th>
 
-            </tr>
+        </tr>
         </thead>
 
         <tbody>
@@ -55,6 +57,5 @@
         {% endfor %}
         </tbody>
     </table>
-    {{ include('reclamation/index.html') }}
     <a href="{{ path('reclamation_new') }}">Create new</a>
 {% endblock %}

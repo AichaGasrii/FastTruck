@@ -1,5 +1,15 @@
 {% extends 'base.html.twig' %}
 
+{% block bodyBackground %}
+        <style>
+                body {
+                        background-image: url("{{ asset('../frontAssets/images/hero-bg.jpg') }}");
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                }
+        </style>
+{% endblock bodyBackground %}
+
 {% block title %}Register{% endblock %}
 {% block client %}
         <form class="form-inline">

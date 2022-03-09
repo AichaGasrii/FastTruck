@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-6">
             {% if qrCode %}
-                <img src="{{ qrCode }}" alt="qr-code">
+                <a href="{{ path('commande_index') }}"><img src="{{ qrCode }}" alt="qr-code"></a>
             {% endif %}
         </div>
     </div>

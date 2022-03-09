@@ -1,5 +1,6 @@
 window.onload = () => {
     // On va chercher toutes les étoiles
+    var_dump("hello wolrd");
     const stars = document.querySelectorAll(".la-star");
 
     // On va chercher l'input

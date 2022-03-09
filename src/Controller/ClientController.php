@@ -6,6 +6,7 @@ use App\Entity\Personnel;
 use App\Form\AjoutClientType;
 use App\Form\AjoutPersonnelType;
 use App\Form\RegistrationFormType;
+use App\Repository\ProductRepository;
 use App\Security\UsersAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Client;
@@ -22,10 +23,11 @@ class ClientController extends AbstractController
     /**
      * @Route("/client", name="app_client")
      */
-    public function index(): Response
+    public function index(ProductRepository $productRepository): Response
     {
+
         return $this->render('client/index.html.twig', [
-            'controller_name' => 'ClientController',
+            'products' => $productRepository->findAll(),
         ]);
     }
 
@@ -64,6 +66,7 @@ class ClientController extends AbstractController
                 $authenticator,
                 'main' // firewall name in security.yaml
             );
+            $this->redirectToRoute('app_client');
         }
 
         return $this->render('registration/ajoutClient.html.twig', [

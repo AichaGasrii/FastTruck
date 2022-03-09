@@ -23,7 +23,7 @@ class QrcodeService
 
     public function qrcode($query)
     {
-        $url = 'http://127.0.0.1:8000/product/';
+        $url = 'http://127.0.0.1:8000/commande/';
 
         $objDateTime = new \DateTime('NOW');
         $dateString = $objDateTime->format('d-m-Y H:i:s');

@@ -102,12 +102,8 @@ class AdminController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $guardHandler->authenticateUserAndHandleSuccess(
-                $admin,
-                $request,
-                $authenticator,
-                'main' // firewall name in security.yaml
-            );
+            return $this->redirectToRoute('app_admin');
+
         }
 
         return $this->render('registration/ajoutAdmin.html.twig', [
