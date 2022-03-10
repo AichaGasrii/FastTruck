@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande index{% endblock %}
+
+{% block body %}
+    <div class="container-fluid mt--7">
+        <!-- Table -->
+        <div class="row">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <h3 class="mb-0">Commande Tables</h3>
+                    </div>
+                    <div class="container">
+
+                        <div class="panel panel-success margetop60">
+                        </div>
+                        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                            <div class="form-group mb-0">
+                                <div class="input-group input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                    </div>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                </div>
+                            </div>
+                        </form>
+
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th>iduser</th>
+                                <th>date</th>
+                                <th>montant</th>
+                                <th>etat</th>
+                                <th>actions</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for co in commande %}
+                                <tr>
+                                    <td>
+                                        {{ co.id }}
+                                    </td>
+                                    <td>
+                                        {{ co.iduser }}
+                                    </td>
+                                    <td>
+                                        {{ co.date ?co.date|date('Y-m-d'):'' }}
+                                    </td>
+                                    <td>
+                                        {{ co.montant }}
+                                    </td>
+
+                                    {% if co.etat == 0 %}
+                                        <td><label class="badge badge-warning">En cours</label></td>
+                                    {% elseif co.etat == 1 %}
+                                        <td><label class="badge badge-success">validé</label></td>
+                                    {% else %}
+                                        <td><label class="badge badge-danger">Refusé</label></td>
+                                    {% endif %}
+                                    <td >
+                                        <a href="{{ path('commnade_edit', {'id': co.id}) }}">edit</a>
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                                </div>
+                                <a href="{{ path('commande_new') }}"> <button type="button" class="btn btn-outline-primary">Create new</button></a>
+
+                            </div>
+
+                            <ul class="pagination justify-content-end mb-0">
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#" tabindex="-1">
+                                                    <i class="fas fa-angle-left"></i>
+
+                                                </a>
+                                            </li>
+                                            <li class="page-item active">
+                                                <a class="page-link" href="#">1</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#">
+                                                    <i class="fas fa-angle-right"></i>
+                                                </a>
+                                            </li>
+                            </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Packaging Pour vos Commandes{% endblock %}
+
+{% block body %}
+    <h1>Packaging Pour vos Commandes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Numcommande</th>
+                <th>Specialisation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for Pack in Packs %}
+            <tr>
+                <td>{{ Pack.id }}</td>
+                <td>{{ Pack.nom }}</td>
+                <td>{{ Pack.prenom }}</td>
+                <td>{{ Pack.numcommande }}</td>
+                <td>{{ Pack.text }}</td>
+                <td>
+                    <a href="{{ path('Pack_show', {'id': Pack.id}) }}">show</a>
+                    <a href="{{ path('Pack_edit', {'id': Pack.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('Pack_new') }}">Create new</a>
+{% endblock %}

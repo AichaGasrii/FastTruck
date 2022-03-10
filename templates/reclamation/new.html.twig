@@ -1,0 +1,21 @@
+{% extends app.user.roles == 'ROLE_ADMIN'
+    ? 'personnel/index.html.twig'
+    : 'admin/index.html.twig' %}
+
+{% block title %}New reclamation{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <h1>Create new Reclamation</h1>
+
+            {{ include('reclamation/_form.html.twig') }}
+
+            <a href="{{ path('reclamation_index') }}">back to list</a>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
