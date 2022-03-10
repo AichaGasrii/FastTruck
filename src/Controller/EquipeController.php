@@ -20,27 +20,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class EquipeController extends AbstractController
 {
     private $twilio;
-    /**
-     * @Route("/", name="equipe_index")
-     */
-    public function index(EquipeRepository $repository,Request $request,PaginatorInterface $paginator): Response
-    {
-        $search = new Equipe();
-        $form = $this->createForm(SearchEquipeType::class,$search);
-        $form->handleRequest($request);
-
-        $donnees=$repository->searchEquipe($search);
-
-        $equipes=$paginator->paginate(
-            $donnees, // Requête contenant les données à paginer (ici nos articles)
-            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            5);// Nombre de résultats par page
-
-        return $this->render('equipe/index.html.twig', [
-            'equipes' => $equipes,
-            'form' => $form->createView()
-        ]);
-    }
+//    /**
+//     * @Route("/", name="equipe_index")
+//     */
+//    public function index(EquipeRepository $repository,Request $request,PaginatorInterface $paginator): Response
+//    {
+//
+//
+//        return $this->render('equipe/index.html.twig', [
+//            'equipes' => $equipes,
+//            'form' => $form->createView()
+//        ]);
+//    }
 
 //    /**
 //     * @Route("/filtreact", name="filtreact", methods={"GET", "POST"})
@@ -59,16 +50,29 @@ class EquipeController extends AbstractController
     public function indextri(Request $request,EquipeRepository $equipeRepository,PaginatorInterface $paginator): Response
     {
 
+        $search = new Equipe();
+        $form = $this->createForm(SearchEquipeType::class,$search);
+        $form->handleRequest($request);
 
+        if($request->get('eq')){
         $eq = $request->get('eq');
-        $equipe = $this->getDoctrine()
+        $equipes = $this->getDoctrine()
             ->getManager()
             ->createQuery('SELECT a FROM App\Entity\equipe a order by  a.age desc')
             ->getResult();
-        $equipe=$paginator->paginate($equipe,$request->query->getInt('page',1),8);
-        return $this->render('equipe/index.html.twig', [
-            'equipes' => $equipe,
+        $equipes=$paginator->paginate($equipes,$request->query->getInt('page',1),8);
+        }else{
 
+            $donnees=$equipeRepository->searchEquipe($search);
+
+            $equipes=$paginator->paginate(
+                $donnees, // Requête contenant les données à paginer (ici nos articles)
+                $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+                5);// Nombre de résultats par page
+        }
+        return $this->render('equipe/index.html.twig', [
+            'equipes' => $equipes,
+            'form' => $form->createView()
 
         ]);
 

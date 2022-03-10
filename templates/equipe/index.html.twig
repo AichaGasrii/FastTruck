@@ -4,9 +4,7 @@
 
 {% block body %}
     <h1>Equipe index
-
             {{ form(form,{'attr':{'class':'d-flex flex-row'}}) }}
-
     <table class="table">
         <thead>
             <tr>
@@ -38,7 +36,7 @@
         {% endfor %}
 
 
-        <a href="{{ path('indextri') }}" class="btn btn-primary"><img src="{{ asset('assets/img/fl.png')}}" alt="" width="24" height="24"></a>
+        <a href="{{ path('indextri',{'eq':'eq'}) }}" class="btn btn-primary"><img src="{{ asset('assets/img/fl.png')}}" alt="" width="24" height="24"></a>
 
         </tbody>
     </table>
