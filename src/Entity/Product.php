@@ -40,8 +40,8 @@ class Product
 
     /**
      * @ORM\Column(type="float")
-     * @Assert\NotEqualTo(
-     *
+     * @Assert\NotEqualTo(0
+     *)
      */
     private $price;
 
@@ -52,7 +52,6 @@ class Product
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
-     * @Assert\NotBlank
      */
     private $category;
 
