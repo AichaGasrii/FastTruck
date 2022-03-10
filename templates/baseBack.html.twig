@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>
-        - Free Dashboard for Bootstrap 4 by Creative Tim
+        Fast Truck
     </title>
     <!-- Favicon -->
     <link href="{{ asset('../backAssets/img/brand/favicon.png') }}" rel="icon" type="image/png">
@@ -26,8 +26,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
-        <a class="navbar-brand pt-0" href="./index.html">
-            <img src="{{ asset('../backAssets/img/brand/blue.png') }}" class="navbar-brand-img" alt="...">
+        <a class="navbar-brand pt-0" href="/admin">
+            <img src="{{ asset('../backAssets/img/brand/logo.png') }}" class="navbar-brand-img" alt="...">
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
@@ -86,7 +86,7 @@
 
                     <div class="col-6 collapse-brand">
                         <a href="./index.html">
-                            <img src="{{ asset('../backAssets/img/brand/blue.png') }}">
+                            <img src="{{ asset('../backAssets/img/brand/logo.png') }}">
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -111,8 +111,8 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item  active ">
-                    <a class="nav-link  active " href="./index.html">
-                        <i class="ni ni-tv-2 text-primary"></i> Dashboard
+                    <a class="nav-link  active " href="/admin">
+                        <i class="ni ni-button-power"></i> Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
@@ -121,8 +121,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="./examples/maps.html">
-                        <i class="ni ni-pin-3 text-orange"></i> Maps
+                    <a class="nav-link " href="/map">
+                        <i class="ni ni-map-big text-red"></i> Maps
                     </a>
                 </li>
                 <li class="nav-item">
@@ -137,55 +137,64 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href={{"/product/back/"}}>
-                        <i class="ni ni-key-25 text-info"></i> Product
+                        <i class="ni ni-album-2 text-green"></i> Product
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href={{"/commande"}}>
+                        <i class="ni ni-cart text-red"></i> Commande
+                    </a>
+                </li>
 
 
 
 
                 <li class="nav-item">
                     <a class="nav-link" href={{"/category/"}}>
-                        <i class="ni ni-circle-08 text-pink"></i> Category
+                        <i class="ni ni-bullet-list-67 text-pink"></i> Category
                     </a>
                 </li>
 
                             <li class="nav-item">
 <a class="nav-link" href={{"/stocks"}}>
-<i class="ni ni-key-25 text-info"></i> Stock
+<i class="ni ni-align-center text-info"></i> Stock
     </a>
     </li>
     <li class="nav-item">
 <a class="nav-link" href={{"/fournisseur"}}>
-<i class="ni ni-key-25 text-info"></i> Fournisseur
+<i class="ni ni-single-02 text-black-50"></i> Fournisseur
     </a>
     </li>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href={{"/equipe"}}>
-                        <i class="ni ni-key-25 text-info"></i> Equipe
+                        <i class="ni ni-circle-08 text-red"></i> Equipe
                     </a>
                 </li>
 
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href={{"/equippement"}}>
-                        <i class="ni ni-key-25 text-info"></i> Equippement
+                        <i class="ni ni-settings text-info"></i> Equippement
                     </a>
                 </li>
 
 
                 <li class="nav-item">
                     <a class="nav-link" href={{"/reclamation"}}>
-                        <i class="ni ni-key-25 text-info"></i> Reclamation
+                        <i class="ni ni-chat-round ct-text-purple-bright"></i> Reclamation
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={{"/reponse"}}>
+                        <i class="ni ni-send text-info"></i> Reponse
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href={{"/livreur"}}>
-                        <i class="ni ni-key-25 text-info"></i> Livreur
+                    <a class="nav-link" href={{"/livreurs"}}>
+                        <i class="ni ni-delivery-fast"></i> Livreurs
                     </a>
                 </li>
 
@@ -194,29 +203,27 @@
             <!-- Divider -->
             <hr class="my-3">
             <!-- Heading -->
-            <h6 class="navbar-heading text-muted">Documentation</h6>
+            <h6 class="navbar-heading text-muted">Options</h6>
             <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-                        <i class="ni ni-spaceship"></i> Getting started
+                    <a class="nav-link" href="/fournisseur/stats">
+                        <i class="ni ni-chart-bar-32"></i> Fournisseur / Stocks
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-                        <i class="ni ni-palette"></i> Foundation
+                    <a class="nav-link" href="/category/stat">
+                        <i class="ni ni-chart-bar-32"></i> Category / Product
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-                        <i class="ni ni-ui-04"></i> Components
+                    <a class="nav-link" href="/reclamation/stats">
+                        <i class="ni ni-chart-pie-35"></i> Reclamtion / Reponse
                     </a>
                 </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item active active-pro">
-                    <a class="nav-link" href="./examples/upgrade.html">
-                        <i class="ni ni-send text-dark"></i> Upgrade to PRO
+                <li class="nav-item">
+                    <a class="nav-link" href="/qr">
+                        <i class="ni ni-ui-04"></i> QR_code
                     </a>
                 </li>
             </ul>
