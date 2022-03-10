@@ -244,7 +244,16 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
 </script>
 <!-- End Google Map -->
-
+<script>
+    $(document).ready(function(){
+        $("#inputPack").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#contenuPack tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
