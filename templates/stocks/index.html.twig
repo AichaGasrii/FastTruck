@@ -21,18 +21,27 @@
 <th>Nom</th>
 <th>Numero fournisseur</th>
 <th>Prix_unitaire</th>
-<th>ID produit</th>
 <th>actions</th>
 
 </tr>
 </thead>
-    <h1>Tri par prix_unitaire </h1>
-    <a href="{{ path('stocks_indextri') }}" class="btn btn-primary"></a>
+
 <tbody>
 {% for stock in stocks %}
 <tr>
+
     <td>{{ stock.id }}</td>
-<td>{{ stock.qteProd }}</td>
+    <td> <span
+                {% if stock.qteProd == 1 %}
+                    class="badge badge-sm bg-gradient-danger"
+                {% endif%}  >{{ stock.qteProd }}
+        </span> {% if stock.qteProd == 1  %}
+            <p class="text-danger"> Stock insuffisant
+            </p>
+        {% endif %}
+    </td>
+
+    <td>{{ stock.qteProd }}</td>
 <td>{{ stock.nom }}</td>
 <td>{{ stock.numerof }}</td>
 <td>{{ stock.prixUnitaire }}</td>
@@ -42,7 +51,8 @@
     <a href="{{ path('stocks_edit', {'id': stock.id}) }}">edit</a>
     </td>
 {% endfor %}
-
+    <h1>Tri par prix_unitaire </h1>
+    <a href="{{ path('stocks_indextri') }}" class="btn btn-primary"></a>
 
 </tbody>
 </table>

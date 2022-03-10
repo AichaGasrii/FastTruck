@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @Route("/product/back")
@@ -20,10 +22,19 @@ class ProductBackController extends AbstractController
     /**
      * @Route("/", name="product_back_index", methods={"GET"})
      */
-    public function index(ProductRepository $productRepository,CategoryRepository $categoryRepository): Response
+    public function index(ProductRepository $productRepository,PaginatorInterface $paginator,Request $request,EntityManagerInterface $em): Response
+
     {
-        return $this->render('product_back/index.html.twig', [
-            'products' => $productRepository->findAll(),
+        $dql = <<<DQL
+    select p from App\Entity\Product p 
+    DQL;
+        $query = $em->createQuery($dql);
+        $product = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            3);
+        return $this->render('product_back\index.html.twig', [
+            'pagination' => $product,
         ]);
     }
 

@@ -42,7 +42,7 @@ class Fournisseur
     private $designation;
 
     /**
-     * @ORM\Column(type="integer", length=66)
+     * @ORM\Column(type="integer")
      */
     private $statu;
 

@@ -6,6 +6,7 @@ use App\Entity\Fournisseur;
 use App\Form\FournisseurType;
 use App\Repository\FournisseurRepository;
 use App\Repository\StocksRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,11 +22,19 @@ class FournisseurController extends AbstractController
     /**
      * @Route("/", name="fournisseur_index", methods={"GET"})
      */
-    public function index(FournisseurRepository $fournisseurRepository,PaginatorInterface $paginator,StocksRepository $stocksRepository,Request $request): Response
+    public function index(FournisseurRepository $fournisseurRepository,StocksRepository $stocksRepository,PaginatorInterface $paginator,Request $request,EntityManagerInterface $em): Response
+
     {
-        $fournisseur=$paginator->paginate($fournisseurRepository->findAll(),$request->query->getInt('page',1),2);
-        return $this->render('fournisseur/index.html.twig', [
-            'fournisseurs' => $fournisseurRepository->findAll(),
+        $dql = <<<DQL
+    select p from App\Entity\Fournisseur p
+    DQL;
+        $query = $em->createQuery($dql);
+        $fournisseur = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            3);
+        return $this->render('fournisseur\index.html.twig', [
+            'pagination' => $fournisseur,
             'stocks' => $stocksRepository->findAll(),
         ]);
     }

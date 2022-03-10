@@ -52,6 +52,11 @@ class Reclamation
      */
     private $etat;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $Rating;
+
     public function __construct()
     {
         $this->reponses = new ArrayCollection();
@@ -165,6 +170,18 @@ class Reclamation
     public function setEtat(?int $etat): self
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getRating(): ?int
+    {
+        return $this->Rating;
+    }
+
+    public function setRating(?int $Rating): self
+    {
+        $this->Rating = $Rating;
 
         return $this;
     }
