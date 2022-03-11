@@ -1,0 +1,71 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Stock index{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid mt--7">
+<!-- Table -->
+<div class="row">
+<div class="col">
+<div class="card shadow">
+<div class="card-header border-0">
+<h3 class="mb-0">Stock Tables</h3>
+</div>
+<div class="table-responsive">
+<table class="table align-items-center table-flush">
+<thead class="thead-light">
+    <tr>
+        <th>Id</th>
+    <th>Quantite Produit</th>
+<th>Nom</th>
+<th>Numero fournisseur</th>
+<th>Prix_unitaire</th>
+<th>actions</th>
+
+</tr>
+</thead>
+
+<tbody>
+{% for stock in stocks %}
+<tr>
+
+    <td>{{ stock.id }}</td>
+    <td> <span
+                {% if stock.qteProd == 1 %}
+                    class="badge badge-sm bg-gradient-danger"
+                {% endif%}  >{{ stock.qteProd }}
+        </span> {% if stock.qteProd == 1  %}
+            <p class="text-danger"> Stock insuffisant
+            </p>
+        {% endif %}
+    </td>
+
+    <td>{{ stock.qteProd }}</td>
+<td>{{ stock.nom }}</td>
+<td>{{ stock.numerof }}</td>
+<td>{{ stock.prixUnitaire }}</td>
+
+<td>
+
+    <a href="{{ path('stocks_edit', {'id': stock.id}) }}">edit</a>
+    </td>
+{% endfor %}
+    <h1>Tri par prix_unitaire </h1>
+    <a href="{{ path('stocks_indextri') }}" class="btn btn-primary"></a>
+
+</tbody>
+</table>
+</div>
+<div class="card-footer py-4">
+    <a href="{{ path('stocks_new') }}">Create new</a>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+{% endblock %}

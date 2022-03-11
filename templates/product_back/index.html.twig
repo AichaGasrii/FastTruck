@@ -1,0 +1,88 @@
+{% extends app.user.roles == 'ROLE_ADMIN'
+    ? 'personnel/index.html.twig'
+    : 'admin/index.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    <div class="container-fluid mt--7">
+        <!-- Table -->
+        <div class="row">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <h3 class="mb-0">Products tables</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th{% if pagination.isSorted('p.name') %} class="sorted"{% endif %}>
+                                    {{ knp_pagination_sortable(pagination, 'Name', 'p.name') }}
+                                </th>
+
+                                <th{% if pagination.isSorted('p.price') %} class="sorted"{% endif %}>
+                                    {{ knp_pagination_sortable(pagination, 'Price', 'p.price') }}
+                                </th>
+
+                                <th>actions</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for p in pagination %}
+                                <tr>
+                                    <td>
+                                        {{ p.id }}
+                                    </td>
+
+                                    <th scope="row">
+                                        <div class="media align-items-center">
+                                            <a href="#" class="avatar rounded-circle mr-3">
+                                                <img alt="Image placeholder" src="{{ asset('uploads/') ~p.image }}">
+                                            </a>
+                                            <div class="media-body">
+                                                <span class="mb-0 text-sm">{{ p.name }}</span>
+                                            </div>
+                                        </div>
+                                    </th>
+
+                                    <td>
+                      <span class="badge badge-dot mr-4">
+                            ${{ p.price }}
+                      </span>
+                                    </td>
+
+                                    <td>
+                                        <a href="{{ path('product_edit', {'id': p.id}) }}">Edit</a>
+
+                                        <a href="{{ path('product_back_discount', {'id': p.id}) }}">Add Discount</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer py-4">
+                        <a href="{{ path('product_new') }}">Create new</a>
+                        <div class="pagination-item">
+<div>
+                            Showing {{ ((pagination.currentPageNumber - 1) * pagination.itemNumberPerPage) + 1 }}
+                            to {{ min(pagination.currentPageNumber * pagination.itemNumberPerPage, pagination.getTotalItemCount) }}
+                            of {{ pagination.getTotalItemCount }} entries
+                        </div>
+
+                            <span>{{ knp_pagination_render(pagination) }}</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

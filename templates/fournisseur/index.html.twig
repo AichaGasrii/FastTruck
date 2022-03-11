@@ -1,0 +1,117 @@
+{% extends app.user.roles == 'ROLE_ADMIN'
+    ? 'personnel/index.html.twig'
+    : 'admin/index.html.twig' %}
+
+{% block title %}Fournisseur index{% endblock %}
+{% block body %}
+<!-- Table -->
+<div class="row">
+<div class="col">
+<div class="card shadow">
+<div class="card-header border-0">
+<h3 class="mb-0">Fournisseur Table</h3>
+</div>
+<div class="table-responsive">
+<table class="table align-items-center table-flush">
+<thead class="thead-light">
+    <tr>
+        <th scope="col">Id</th>
+        <th{% if pagination.isSorted('p.nom') %} class="sorted"{% endif %}>
+            {{ knp_pagination_sortable(pagination, 'Nom', 'p.nom') }}
+        </th>
+        <th>Numero</th>
+        <th>Designation</th>
+        <th>statu</th>
+    <th>Email</th>
+    <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for p in pagination %}
+<tr>
+    <td>
+        {{ p.id }}
+</td>
+
+<th scope="row">
+<div class="media align-items-center">
+
+<div class="media-body">
+<span class="mb-0 text-sm">{{ p.nom }}</span>
+</div>
+</div>
+</th>
+
+<td>
+<span class="badge badge-dot mr-4">
+    {{ p.Numero }}
+</span>
+</td>
+<td>
+<span class="badge badge-dot mr-4">
+    {{ p.Designation }}
+</span>
+</td>
+    <span class="badge badge-dot mr-4">
+    {% if p.statu == 0 %}
+        <td><label class="badge badge-warning">En cours</label></td>
+    {% elseif p.statu == 1 %}
+        <td><label class="badge badge-success">validé</label></td>
+    {% else %}
+        <td><label class="badge badge-danger">Refusé</label></td>
+    {% endif %}
+    <td>
+<span class="badge badge-dot mr-4">
+    {{ p.Email }}
+</span>
+    </td>
+</span>
+</td>
+
+
+<td >
+<a href="{{ path('fournisseur_edit', {'id': p.id}) }}">edit</a>
+    </td>
+    </tr>
+{% endfor %}
+
+
+</tbody>
+</table>
+</div>
+<div class="card-footer py-4">
+
+</div>
+    <a href="{{ path('fournisseur_new') }}"> <button type="button" class="btn btn-outline-primary">Create new</button></a>
+
+</div>
+
+    <div class="pagination-item">
+        Showing {{ ((pagination.currentPageNumber - 1) * pagination.itemNumberPerPage) + 1 }}
+        to {{ min(pagination.currentPageNumber * pagination.itemNumberPerPage, pagination.getTotalItemCount) }}
+        of {{ pagination.getTotalItemCount }} entries
+    </div>
+
+    <span>{{ knp_pagination_render(pagination) }}</span>
+
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+    <script>
+
+        {% set message='' %}
+        {% for stock in stocks %}
+        {% if stock.qteProd == 0 %}
+        {% set message=message~stock.nom~' est out of stock, contactez le fournisseur '~stock.fournisseur~'\\n' %}
+        {% endif %}
+        {% endfor %}
+        window.onload = function() {
+            alert('{{ message }}');}
+    </script>
+
+{% endblock %}

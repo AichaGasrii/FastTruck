@@ -1,0 +1,34 @@
+<table class="table align-items-center mb-0">
+    <thead>
+    <tr>
+        <th class="text-uppercase text-xxs font-weight-bolder ">Nom et prenom</th>
+        <th class="text-uppercase text-xxs font-weight-bolder ">Email</th>
+        <th class="text-uppercase text-xxs font-weight-bolder ps-2">Adresse</th>
+        <th class="text-uppercase text-xxs font-weight-bolder">Numero de telephone</th>
+        <th class="text-secondary opacity-7"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for client in clients %}
+        <tr>
+            <td>
+                <div class="d-flex px-2 py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm text-uppercase">{{ client.prenom}} {{ client.nom }}</h6>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <p class="text-xs mb-0">{{client.email}}</p>
+            </td>
+            <td>
+                <p class="text-xs font-weight-bold text-uppercase mb-0">{{ client.adresse }}</p>
+            </td>
+            <td>
+                <p class="text-xs font-weight-bold text-uppercase mb-0">{{ client.num_tel }}</p>
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>

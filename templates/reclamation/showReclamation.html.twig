@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consulter Reclamation{% endblock %}
+
+{% block body %}
+    <h1>Consulter Reclamation</h1>
+        {{ form_start(form) }}
+    {{ form_row(form.nom,{'attr':{'readonly':'true'}}) }}
+    {{ form_row(form.description,{'attr':{'readonly':'true'}}) }}
+    {{ form_row(form.email,{'attr':{'readonly':'true'}}) }}
+        {{ form_end(form) }}
+        <h1>Liste des réponses</h1>
+    {% for response in reclamation.reponses %}
+        <div class="detail-box">
+            {{ response.commentaire }}
+        </div>
+    {% endfor %}
+    <a href="{{ path('reclamation_index') }}">back to list</a>
+{% endblock %}

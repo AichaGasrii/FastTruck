@@ -1,0 +1,162 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\Commande;
+use App\Form\CommandeType;
+use App\Repository\CommandeRepository;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+/**
+ * @Route("/commande")
+ */
+class CommandeController extends AbstractController
+{
+    /**
+     * @Route("/", name="commande_index", methods={"GET"})
+     */
+    public function index(CommandeRepository $commandeRepository): Response
+    {
+        return $this->render('commande/index.html.twig', [
+            'commande' => $commandeRepository->findAll(),
+        ]);
+    } /**
+ * @Route("/stats", name="statCommande")
+ */
+    public function stat()
+    {
+        $repository = $this->getDoctrine()->getRepository(Commande::class);
+        $commande = $repository->findAll();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $r1=0;
+        $r2=0;
+
+        foreach ($commande as $commande)
+        {
+            if ( $commande->getetat()==1) :
+
+                $r1+=1;
+            else:
+
+                $r2+=1;
+
+
+            endif;
+
+        }
+
+        $pieChart = new PieChart();
+        $pieChart->getData()->setArrayToDataTable(
+            [['etat', 'nombre'],
+                ['valide', $r1],
+                ['en cours', $r2],
+            ]
+        );
+        $pieChart->getOptions()->setTitle('Statiqtiques ');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+
+        return $this->render('commande/stat.html.twig', array('piechart' => $pieChart));
+    }
+
+
+    /**
+     * @Route("/new", name="commande_new", methods={"GET", "POST"})
+     */
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $commande= new Commande();
+        $form = $this->createForm(CommandeType::class, $commande);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($commande);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('commande_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('commande/new.html.twig', [
+            'commande' => $commande,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="commande_show", methods={"GET"})
+     */
+    public function show(Commande $commande): Response
+    {
+        return $this->render('commande/show.html.twig', [
+            'commande' => $commande,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="commnade_edit", methods={"GET", "POST"})
+     */
+    public function edit(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(CommandeType::class, $commande);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('commande_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('commande/edit.html.twig', [
+            'commande' => $commande,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="commande_delete", methods={"POST"})
+     */
+    public function delete(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$commande->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($commande);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('commande_index', [], Response::HTTP_SEE_OTHER);
+    }
+    /**
+     * @Route("/{id}/valide", name="commande_valide")
+     * @param Commande $commande
+     * @return RedirectResponse
+     */
+    public function valide (Commande $commande): RedirectResponse
+    {   $commande->setEtat(1);
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+        return $this->redirectToRoute("commande_index");
+    }
+    /**
+     * @Route("/{id}/refuse", name="commande_refuse")
+     * @param Commande $commande
+     * @return RedirectResponse
+     */
+    public function refuse (Commande $commande): RedirectResponse
+    {   $commande->setEtat(2);
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+        return $this->redirectToRoute("commande_index");
+    }
+}

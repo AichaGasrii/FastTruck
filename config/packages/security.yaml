@@ -1,0 +1,56 @@
+security:
+    encoders:
+        App\Entity\Users:
+            algorithm: auto
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        chain_provider:
+            chain:
+                providers: [app_client_provider, app_admin_provider, app_personnel_provider]
+        # used to reload user from session & other features (e.g. switch_user)
+        app_client_provider:
+            entity:
+                class: App\Entity\Client
+                property: email
+
+        app_admin_provider:
+            entity:
+                class: App\Entity\Admin
+                property: email
+        app_personnel_provider:
+            entity:
+                class: App\Entity\Personnel
+                property: email
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: lazy
+            provider: chain_provider
+            guard:
+                authenticators:
+                    - App\Security\UsersAuthenticator
+            logout:
+                path: app_logout
+                target: app_login
+                # where to redirect after logout
+                # target: app
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+         #- { path: ^/admin, roles: ROLE_ADMIN }
+         #- { path: /register, roles: ROLE_ADMIN}
+         #- { path: ^/client, roles: ROLE_CLIENT }
+         #- { path: /ajoutClient, roles: ROLE_CLIENT}
+         #- { path: ^/modifierCompte, roles: ROLE_CLIENT}
+         #- { path: ^/personnel, roles: ROLE_PERSONNEL}

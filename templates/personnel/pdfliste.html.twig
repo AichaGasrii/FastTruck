@@ -1,0 +1,43 @@
+<table class="table align-items-center mb-0">
+    <thead>
+    <tr>
+        <th class="text-uppercase text-xxs font-weight-bolder ">Nom et prenom</th>
+        <th class="text-uppercase text-xxs font-weight-bolder ">Email</th>
+        <th class="text-uppercase text-xxs font-weight-bolder ps-2">Role</th>
+        <th class="text-center text-uppercase text-xxs font-weight-bolder">Salaire</th>
+        <th class="text-center text-uppercase text-xxs font-weight-bolder ">Nombre d'heures de travail</th>
+        <th class="text-center text-uppercase text-xxs font-weight-bolder">Matricule Truck</th>
+        <th class="text-secondary opacity-7"></th>
+        <th class="text-secondary opacity-7"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for perso in personnels %}
+        <tr>
+            <td>
+                <div class="d-flex px-2 py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                        <h5 class="text-uppercase">{{ perso.prenom}} {{ perso.nom }}</h5>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <p class="text-xs mb-0">{{perso.email}}</p>
+            </td>
+            <td>
+                <p class="text-xs font-weight-bold text-uppercase mb-0">{{ perso.role }}</p>
+            </td>
+            <td>
+                <p class="text-xs font-weight-bold text-uppercase mb-0">{{ perso.salaire }}</p>
+            </td>
+            <td>
+                <p class="text-xs font-weight-bold text-uppercase mb-0">{{ perso.nbre_heures }}</p>
+            </td>
+            <td>
+                <p class="text-xs font-weight-bold text-uppercase mb-0">{{ perso.matricule_truck }}</p>
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>

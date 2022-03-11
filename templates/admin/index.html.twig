@@ -1,0 +1,148 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block Username %}
+    <ul class="navbar-nav align-items-center d-none d-md-flex">
+        <li class="nav-item dropdown">
+            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="/../backAssets/img/theme/team-4-800x800.jpg">
+                </span>
+                    <div class="media-body ml-2 d-none d-lg-block">
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+{% endblock Username %}
+
+{% block SideNav %}
+    <ul class="navbar-nav">
+        <li class="nav-item  active ">
+            <a class="nav-link  active " href="/admin">
+                <i class="ni ni-tv-2 text-primary"></i> Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/listeClient">
+                <i class="ni ni-single-02 text-yellow"></i> Liste des Clients
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/listePersonnel">
+                <i class="ni ni-single-02 text-yellow"></i> Liste des Personnels
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/ajoutPersonnel">
+                <i class="ni ni-single-02 text-yellow"></i> Ajouter Personnel
+            </a>
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/ajoutAdmin">
+                <i class="ni ni-single-02 text-yellow"></i> Ajouter Administrateur
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href={{"/equipe"}}>
+                <i class="ni ni-circle-08 text-red"></i> Equipe
+            </a>
+        </li>
+
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href={{"/equippement"}}>
+                <i class="ni ni-settings text-info"></i> Equippement
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href={{"/fournisseur"}}>
+                <i class="ni ni-single-02 text-black-50"></i> Fournisseur
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href={{"/stocks"}}>
+                <i class="ni ni-align-center text-info"></i> Stock
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href={{"/category/"}}>
+                <i class="ni ni-bullet-list-67 text-pink"></i> Category
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href={{"/product/back/"}}>
+                <i class="ni ni-album-2 text-green"></i> Product
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href={{"/commande"}}>
+                <i class="ni ni-cart text-red"></i> Commande
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href={{"/livreurs"}}>
+                <i class="ni ni-delivery-fast"></i> Livreurs
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link " href="/map">
+                <i class="ni ni-map-big text-red"></i> Maps
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href={{"/reclamation"}}>
+                <i class="ni ni-chat-round ct-text-purple-bright"></i> Reclamation
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href={{"/reponse"}}>
+                <i class="ni ni-send text-info"></i> Reponse
+            </a>
+        </li>
+    </ul>
+    <!-- Divider -->
+    <hr class="my-3">
+    <!-- Heading -->
+    <h6 class="navbar-heading text-muted">Options</h6>
+    <!-- Navigation -->
+    <ul class="navbar-nav mb-md-3">
+        <li class="nav-item">
+            <a class="nav-link" href="/fournisseur/stats">
+                <i class="ni ni-chart-bar-32"></i> Fournisseur / Stocks
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/category/stat">
+                <i class="ni ni-chart-bar-32"></i> Category / Product
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/reclamation/stats">
+                <i class="ni ni-chart-pie-35"></i> Reclamtion / Reponse
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/commande/stats">
+                <i class="ni ni-chart-pie-35"></i> commande stats
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/qr">
+                <i class="ni ni-ui-04"></i> QR_code
+            </a>
+        </li>
+    </ul>
+
+
+
+
+    </ul>
+{% endblock SideNav %}

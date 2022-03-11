@@ -1,0 +1,48 @@
+{% extends app.user.roles == 'ROLE_ADMIN'
+    ? 'personnel/index.html.twig'
+    : 'admin/index.html.twig' %}
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+    <h1>commande</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commande.id }}</td>
+            </tr>
+            <tr>
+                <th>iduser</th>
+                <td>{{ commande.iduser }}</td>
+            </tr>
+            <tr>
+                <th>date</th>
+                <td>{{  commande.date ? commande.date|date('Y-m-d') : ''  }}</td>
+
+            </tr>
+            <tr>
+                <th>montant</th>
+                <td>{{ commande.montant }}</td>
+
+            </tr>
+            <tr>
+
+                <td><a href="{{ path('commande_valide', {"id": commande.id}) }}">valider</a></td>
+            </tr>
+            <tr>
+
+                <td><a href="{{ path('commande_refuse', {"id": commande.id}) }}">refuse</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('commande_index') }}">back to list</a>
+
+    <a href="{{ path('commnade_edit', {'id': commande.id}) }}">edit</a>
+
+    {{ include('commande/_delete_form.html.twig') }}
+
+
+
+{% endblock %}
