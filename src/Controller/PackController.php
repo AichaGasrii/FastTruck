@@ -19,7 +19,7 @@ use Twilio\Rest\Client;
 class PackController extends AbstractController
 {
     /**
-     * @Route("/", name="Pack_index", methods={"GET"})
+     * @Route("/show", name="Pack_index", methods={"GET"})
      */
     public function index(PackRepository $PackRepository): Response
     {
@@ -53,7 +53,7 @@ class PackController extends AbstractController
             $entityManager->persist($Pack);
             $entityManager->flush();
             $account_sid = 'AC5bf1069e34a096d16cebd4a1b4481bba';
-            $auth_token = 'fcdc24eab1c2e969f2d44dd200d09582';
+            $auth_token = '6b34e82b837ae4935b97551dbbd26dcc';
             $twilio_number = "+17622474309";
 
             $client = new Client($account_sid,$auth_token);
@@ -61,10 +61,11 @@ class PackController extends AbstractController
                 '+21626629623',
                 array(
                     'from' => $twilio_number,
-                    'body' => 'Vous avez crée le pack avec le numéro de commande'.$Pack->getNumcommande().'!'
+                    'body' => 'Pack crée pour le client de num commande'.$Pack->getNumcommande().'!'
                 )
             );
             return $this->redirectToRoute('Pack_index', [], Response::HTTP_SEE_OTHER);
+
         }
 
         return $this->render('Pack/new.html.twig', [
@@ -72,6 +73,7 @@ class PackController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
 
     /**
      * @Route("/{id}", name="Pack_show", methods={"GET"})

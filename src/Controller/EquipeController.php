@@ -14,36 +14,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/equipe")
- */
-class EquipeController extends AbstractController
-{
-    private $twilio;
-//    /**
-//     * @Route("/", name="equipe_index")
-//     */
-//    public function index(EquipeRepository $repository,Request $request,PaginatorInterface $paginator): Response
-//    {
-//
-//
-//        return $this->render('equipe/index.html.twig', [
-//            'equipes' => $equipes,
-//            'form' => $form->createView()
-//        ]);
-//    }
 
-//    /**
-//     * @Route("/filtreact", name="filtreact", methods={"GET", "POST"})
-//     */
-//
-//    public function filtreact(a $actualiteRepository, CategorieActualiteRepository $categorieActualiteRepository, PaginatorInterface $paginator, Request $request): Response
-//    {
-//
-//
-//        return $this->render('actualite/index.html.twig', [
-//        ]);
-//    }
+
+
+
+    /**
+     * @Route("/equipe")
+     */
+class EquipeController extends AbstractController
+
+{
+
 /**
  * @Route("/indextri", name="indextri", methods={"GET"})
  */
@@ -107,7 +88,7 @@ if ($form->isSubmitted() && $form->isValid()) {
 //            'body' => 'I sent this message in under 10 minutes!'
 //        )
 //    );
-            return $this->redirectToRoute('equipe_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('indextri', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('equipe/new.html.twig', [
@@ -138,7 +119,7 @@ if ($form->isSubmitted() && $form->isValid()) {
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('equipe_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('indextri', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('equipe/edit.html.twig', [
@@ -158,6 +139,6 @@ if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('equipe_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('indextri', [], Response::HTTP_SEE_OTHER);
     }
 }
