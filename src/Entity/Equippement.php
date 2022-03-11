@@ -22,12 +22,14 @@ class Equippement
     /**
      * @ORM\Column(type="string", length=44, nullable=true)
      * @Assert\NotBlank(allowNull = true)
+     * @Assert\Length(min=3,max=255)
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=64, nullable=true)
      * @Assert\NotBlank(allowNull = true)
+     * @Assert\Length(min=3,max=255)
      */
     private $metier;
 

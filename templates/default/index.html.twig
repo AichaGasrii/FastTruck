@@ -1,23 +1,23 @@
-{% extends 'base1.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1> QR-Code ✅</h1> <hr>
+    <div class="example-wrapper">
+        <h1> Equipe QR-Code </h1> <hr>
 
-    <div class="row">
-        <div class="col-md-6">
-            {{ form_start(form) }}
-                {{ form_row(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Recherche'}}) }}
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_start(form) }}
+                {{ form_row(form.id, {'attr': {'class': 'form-control', 'placeholder': 'Recherche'}}) }}
                 <hr>
                 <button type="submit" class="btn btn-success btn-block">Recherche</button>
-            {{ form_end(form) }}
-        </div>
-        <div class="col-md-6">
-            {% if qrCode %}
-                <a href="{{ path('commande_index') }}"><img src="{{ qrCode }}" alt="qr-code"></a>
-            {% endif %}
+                {{ form_end(form) }}
+            </div>
+            <div class="col-md-6">
+                {% if qrCode %}
+                    <img src="{{ qrCode }}" alt="qr-code">
+                {% endif %}
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}

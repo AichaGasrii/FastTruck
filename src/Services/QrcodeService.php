@@ -23,7 +23,7 @@ class QrcodeService
 
     public function qrcode($query)
     {
-        $url = 'http://127.0.0.1:8000/commande/';
+        $url = 'http://127.0.0.1:8000/equipe/';
 
         $objDateTime = new \DateTime('NOW');
         $dateString = $objDateTime->format('d-m-Y H:i:s');
@@ -43,7 +43,7 @@ class QrcodeService
             ->logoPath($path.'img/logo.png')
             ->logoResizeToWidth('100')
             ->logoResizeToHeight('100')
-            ->backgroundColor(new Color(0, 0, 220))
+            ->backgroundColor(new Color(221, 158, 3))
             ->build()
         ;
 

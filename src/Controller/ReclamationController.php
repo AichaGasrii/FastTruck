@@ -98,7 +98,7 @@ class ReclamationController extends AbstractController
     public function new(Request $request): Response
     {
         $reclamation = new Reclamation();
-        $objDateTime=new\ DateTime('NOW');
+        $objDateTime=new \DateTime('NOW');
         $reclamation->setDate($objDateTime);
         $form = $this->createForm(ReclamationType::class, $reclamation);
         $form->handleRequest($request);

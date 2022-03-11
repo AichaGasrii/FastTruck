@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220310112024 extends AbstractMigration
+final class Version20220310232230 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -27,9 +27,9 @@ final class Version20220310112024 extends AbstractMigration
         $this->addSql('ALTER TABLE equippement CHANGE nom nom VARCHAR(44) DEFAULT NULL, CHANGE metier metier VARCHAR(64) DEFAULT NULL');
         $this->addSql('ALTER TABLE fournisseur CHANGE statu statu INT NOT NULL');
         $this->addSql('ALTER TABLE offre CHANGE nom nom VARCHAR(55) DEFAULT NULL, CHANGE prenom prenom VARCHAR(55) DEFAULT NULL, CHANGE num num VARCHAR(55) DEFAULT NULL, CHANGE text text VARCHAR(65) DEFAULT NULL');
-        $this->addSql('ALTER TABLE pack CHANGE nom nom VARCHAR(55) DEFAULT NULL, CHANGE prenom prenom VARCHAR(55) DEFAULT NULL, CHANGE numcommande numcommande VARCHAR(55) DEFAULT NULL, CHANGE text text VARCHAR(65) DEFAULT NULL');
+        $this->addSql('ALTER TABLE pack DROP nom, DROP prenom, DROP text, CHANGE numcommande numcommande VARCHAR(55) DEFAULT NULL');
         $this->addSql('ALTER TABLE product CHANGE category_id category_id INT DEFAULT NULL, CHANGE discount discount DOUBLE PRECISION DEFAULT NULL, CHANGE initial_price initial_price DOUBLE PRECISION DEFAULT NULL');
-        $this->addSql('ALTER TABLE reclamation ADD rating INT DEFAULT NULL, CHANGE etat etat INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE reclamation CHANGE etat etat INT DEFAULT NULL, CHANGE rating rating INT DEFAULT NULL');
         $this->addSql('ALTER TABLE users CHANGE roles roles JSON NOT NULL');
     }
 
@@ -43,9 +43,9 @@ final class Version20220310112024 extends AbstractMigration
         $this->addSql('ALTER TABLE equippement CHANGE nom nom VARCHAR(44) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`, CHANGE metier metier VARCHAR(64) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('ALTER TABLE fournisseur CHANGE statu statu INT DEFAULT NULL');
         $this->addSql('ALTER TABLE offre CHANGE nom nom VARCHAR(55) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`, CHANGE prenom prenom VARCHAR(55) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`, CHANGE num num VARCHAR(55) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`, CHANGE text text VARCHAR(65) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`');
-        $this->addSql('ALTER TABLE pack CHANGE nom nom VARCHAR(55) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`, CHANGE prenom prenom VARCHAR(55) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`, CHANGE numcommande numcommande VARCHAR(55) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`, CHANGE text text VARCHAR(65) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`');
+        $this->addSql('ALTER TABLE pack ADD nom VARCHAR(55) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`, ADD prenom VARCHAR(55) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`, ADD text VARCHAR(65) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`, CHANGE numcommande numcommande VARCHAR(55) CHARACTER SET utf8mb4 DEFAULT \'NULL\' COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('ALTER TABLE product CHANGE category_id category_id INT DEFAULT NULL, CHANGE discount discount DOUBLE PRECISION DEFAULT \'NULL\', CHANGE initial_price initial_price DOUBLE PRECISION DEFAULT \'NULL\'');
-        $this->addSql('ALTER TABLE reclamation DROP rating, CHANGE etat etat INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE reclamation CHANGE etat etat INT DEFAULT NULL, CHANGE rating rating INT DEFAULT NULL');
         $this->addSql('ALTER TABLE users CHANGE roles roles LONGTEXT CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_bin`');
     }
 }

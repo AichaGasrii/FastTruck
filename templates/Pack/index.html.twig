@@ -4,26 +4,20 @@
 
 {% block body %}
     <h1>Packaging Pour vos Commandes</h1>
-
+    <input type="text" id="inputPack"/>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nom</th>
-                <th>Prenom</th>
                 <th>Numcommande</th>
-                <th>Specialisation</th>
                 <th>actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="contenuPack">
         {% for Pack in Packs %}
             <tr>
                 <td>{{ Pack.id }}</td>
-                <td>{{ Pack.nom }}</td>
-                <td>{{ Pack.prenom }}</td>
                 <td>{{ Pack.numcommande }}</td>
-                <td>{{ Pack.text }}</td>
                 <td>
                     <a href="{{ path('Pack_show', {'id': Pack.id}) }}">show</a>
                     <a href="{{ path('Pack_edit', {'id': Pack.id}) }}">edit</a>

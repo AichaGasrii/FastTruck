@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -25,7 +26,52 @@ class CommandeController extends AbstractController
         return $this->render('commande/index.html.twig', [
             'commande' => $commandeRepository->findAll(),
         ]);
+    } /**
+ * @Route("/stats", name="statCommande")
+ */
+    public function stat()
+    {
+        $repository = $this->getDoctrine()->getRepository(Commande::class);
+        $commande = $repository->findAll();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $r1=0;
+        $r2=0;
+
+        foreach ($commande as $commande)
+        {
+            if ( $commande->getetat()==1) :
+
+                $r1+=1;
+            else:
+
+                $r2+=1;
+
+
+            endif;
+
+        }
+
+        $pieChart = new PieChart();
+        $pieChart->getData()->setArrayToDataTable(
+            [['etat', 'nombre'],
+                ['valide', $r1],
+                ['en cours', $r2],
+            ]
+        );
+        $pieChart->getOptions()->setTitle('Statiqtiques ');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+
+        return $this->render('commande/stat.html.twig', array('piechart' => $pieChart));
     }
+
 
     /**
      * @Route("/new", name="commande_new", methods={"GET", "POST"})

@@ -5,10 +5,13 @@ namespace App\Controller;
 use App\Entity\Pack;
 use App\Form\PackType;
 use App\Repository\PackRepository;
+use Captcha\Bundle\CaptchaBundle\Form\Type\CaptchaType;
+use Captcha\Bundle\CaptchaBundle\Validator\Constraints\ValidCaptcha;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Twilio\Rest\Client;
 
 /**
  * @Route("/Pack")
@@ -27,18 +30,40 @@ class PackController extends AbstractController
 
     /**
      * @Route("/new", name="Pack_new", methods={"GET","POST"})
+     * @throws \Twilio\Exceptions\TwilioException
      */
     public function new(Request $request): Response
     {
+
         $Pack = new Pack();
         $form = $this->createForm(PackType::class, $Pack);
+        $form->add('captchaCode', CaptchaType::class, array(
+            'captchaConfig' => 'ExampleCaptchaUserRegistration',
+            'mapped' => false,
+            'constraints' => [
+                new ValidCaptcha([
+                    'message' => 'Invalid captcha, please try again',
+                ]),
+            ],
+        ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($Pack);
             $entityManager->flush();
+            $account_sid = 'AC5bf1069e34a096d16cebd4a1b4481bba';
+            $auth_token = 'fcdc24eab1c2e969f2d44dd200d09582';
+            $twilio_number = "+17622474309";
 
+            $client = new Client($account_sid,$auth_token);
+            $client->messages->create(
+                '+21626629623',
+                array(
+                    'from' => $twilio_number,
+                    'body' => 'Vous avez crée le pack avec le numéro de commande'.$Pack->getNumcommande().'!'
+                )
+            );
             return $this->redirectToRoute('Pack_index', [], Response::HTTP_SEE_OTHER);
         }
 

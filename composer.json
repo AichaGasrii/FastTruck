@@ -61,7 +61,8 @@
         },
         "sort-packages": true,
         "allow-plugins": {
-            "symfony/flex": true
+            "symfony/flex": true,
+            "endroid/installer": true
         }
     },
     "autoload": {

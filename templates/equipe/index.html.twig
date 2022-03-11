@@ -4,7 +4,6 @@
 
 {% block body %}
     <h1>Equipe index</h1>
-
     <table class="table">
         <thead>
             <tr>
@@ -13,7 +12,7 @@
                 <th>Prenom</th>
                 <th>Age</th>
                 <th>Metier</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -34,8 +33,13 @@
                 <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
+
+
+        <a href="{{ path('indextri',{'eq':'eq'}) }}" class="btn btn-primary"><img src="{{ asset('assets/img/fl.png')}}" alt="" width="24" height="24"></a>
+
         </tbody>
     </table>
+    {{ knp_pagination_render(equipes) }}
+    <a href="{{ path('equipe_index') }}">Create new</a>
 
-    <a href="{{ path('equipe_new') }}">Create new</a>
 {% endblock %}

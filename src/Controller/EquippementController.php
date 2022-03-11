@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Equippement;
 use App\Form\EquippementType;
 use App\Repository\EquippementRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +19,18 @@ class EquippementController extends AbstractController
     /**
      * @Route("/", name="equippement_index", methods={"GET"})
      */
-    public function index(EquippementRepository $equippementRepository): Response
+    public function index(EquippementRepository $repository,Request $request,PaginatorInterface $paginator): Response
     {
+        $donnees=$repository->findAll();
+        $equippements=$paginator->paginate(
+            $donnees, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            3 // Nombre de résultats par page
+        );
+
         return $this->render('equippement/index.html.twig', [
-            'equippements' => $equippementRepository->findAll(),
+            'equippements'=>$equippements
+
         ]);
     }
 

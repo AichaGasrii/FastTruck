@@ -7,10 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * @ORM\Entity(repositoryClass=EquipeRepository::class)
  */
+
 class Equipe
 {
     /**
@@ -22,26 +22,29 @@ class Equipe
 
     /**
      * @ORM\Column(type="string", length=55, nullable=true)
-
+     * @Assert\Length(min=3,max=255)
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=55, nullable=true)
      * @Assert\NotBlank(allowNull = true)
+     * @Assert\Length(min=3,max=255)
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\NotBlank(allowNull = true)
+     * @Assert\Positive
+     *  @Assert\Range(min=10,max=100)
      */
     private $age;
 
     /**
      * @ORM\Column(type="string", length=55, nullable=true)
      * @Assert\NotBlank(allowNull = true)
-     * @Assert\Positive
+     * @Assert\Length(min=3,max=255)
      */
     private $metier;
 
@@ -50,6 +53,7 @@ class Equipe
      * @Assert\NotBlank(allowNull = true)
      */
     private $equipement;
+
 
     public function __construct()
     {
@@ -137,4 +141,8 @@ class Equipe
     {
         return $this->nom;
     }
+
+
+
 }
+
